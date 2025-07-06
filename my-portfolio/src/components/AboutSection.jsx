@@ -1,4 +1,3 @@
-import {Github, Mail, Linkedin, Download} from "lucide-react";
 
 export const AboutSection = () => {
     return (
@@ -35,19 +34,7 @@ export const AboutSection = () => {
                             I thrive in collaborative environments and enjoy tackling challenges head-on.
                         </p>
 
-                        {/* Contact Buttons */}
-                    
-                        <div className="py-5 flex flex-col md:flex-row items-center md:items-start justify-center gap-8">
-                            <a href="https://github.com/zowowo" target="_blank" title="Check out my Github!">
-                                <Github className="h-6 w-6 text-primary transform transition-transform duration-1200 " />
-                            </a>
-                            <a href="mailto:zoepineda47@gmail.com" target="_blank" title="Send me an email :)">
-                                <Mail className="h-6 w-6 text-primary transform transition-transform duration-1200"/>
-                            </a>
-                            <a href="https://www.linkedin.com/in/zoe-aleczandra-pineda/" target="_blank" title="Lets connect!">
-                                <Linkedin className="h-6 w-6 text-primary transform transition-transform duration-1200" />
-                            </a>
-                        </div>
+                        
                     </div>
 
                     
