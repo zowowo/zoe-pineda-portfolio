@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Github, GitMerge } from "lucide-react";
+import { Database, Github, GitMerge } from "lucide-react";
 import clsx from "clsx";
 
 const skills = [
@@ -8,13 +8,18 @@ const skills = [
   { name: "JavaScript", category: "Frontend", icon: "src/assets/skills/javascript.svg" },
   { name: "React", category: "Frontend", icon: "src/assets/skills/react.svg" },
   { name: "Tailwind CSS", category: "Frontend", icon: "src/assets/skills/tailwind.svg" },
+  { name: "Bootstrap", category: "Frontend", icon: "src/assets/skills/bootstrap.svg" },
   { name: "Python", category: "Backend", icon: "src/assets/skills/python.svg" },
   { name: "Postman", category: "Tools", icon: "src/assets/skills/postman.svg" },
   { name: "Github", category: "Tools", icon: Github },
   { name: "Git", category: "Tools", icon: GitMerge },
+  { name: "Flutter", category: "Mobile Development", icon: "src/assets/skills/flutter.svg" },
+  { name: "MySQL", category: "Backend", icon: Database },
+  { name: "VSCode", category: "Tools", icon: "src/assets/skills/vscode.svg" },
+  { name: "Figma", category: "Tools", icon: "src/assets/skills/figma.svg"},
 ];
 
-const categories = ["All", "Frontend", "Backend", "Tools"];
+const categories = ["All", "Frontend", "Backend", "Mobile Development", "Tools"];
 
 export const SkillsSection = () => {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -26,7 +31,7 @@ export const SkillsSection = () => {
 
   return (
     <section id="skills" className="py-24 px-4 relative">
-      <div className="container mx-auto max-w-5xl">
+      <div className="container mx-auto max-w-4xl">
         <h2 className="text-4xl font-bold text-center mb-8">
           <span className="text-primary">Skills</span>{" "}
           <span className="text-foreground">and Technologies</span>
@@ -51,7 +56,7 @@ export const SkillsSection = () => {
         </div>
 
         {/* Grid of Skills */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
           {filteredSkills.map((skill, idx) => (
             <div
               key={idx}
@@ -61,7 +66,7 @@ export const SkillsSection = () => {
                 <img
                   src={skill.icon}
                   alt={skill.name}
-                  className="w-16 h-16 mb-3"
+                  className="w16 h-16 mb-3"
                 />
               ) : (
                 <skill.icon className="w-16 h-16 mb-3 text-foreground" />

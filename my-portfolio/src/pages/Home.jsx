@@ -5,6 +5,7 @@ import { AboutSection } from "../components/AboutSection";
 import { SkillsSection } from "../components/SkillsSection";
 import { ProjectsSection } from "../components/ProjectsSection"
 import { PracticumSection } from "../components/PracticumSection.jsx"
+import { GlassBackground } from "../components/GlassBackground.jsx";
 
 
 export const Home = () => {
@@ -14,6 +15,7 @@ export const Home = () => {
 
         {/* Background Effects */}
         {/* <StarBackground/> */}
+        <GlassBackground/>
 
         {/* Navbar */}
         <Navbar/>
