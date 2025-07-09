@@ -11,9 +11,8 @@ export const ProjectsSection = () => {
 
                 <ProjectCard
                     title="AgriKA"
-                    blackTitle=": Rice Yield Predictor"
                     description="A CNN-LSTM based tool for visualizing and predicting rice yields using satellite imagery."
-                    imageSrc="src/assets/projects/agrika.JPG"
+                    imageSrc="src/assets/projects/agrika.png"
                     tech={['Flask', 'Python', 'CNN', 'LSTM', 'TensorFlow', 'SQL']}
                     githubLink="https://github.com/yourusername/agrika"
                     reverse={true}
@@ -21,10 +20,10 @@ export const ProjectsSection = () => {
 
                 <ProjectCard
                     title="Haste-urant"
-                    description="A CNN-LSTM based tool for visualizing and predicting rice yields using satellite imagery."
-                    imageSrc="src/assets/projects/agrika.JPG"
+                    description="A restaurant management system that allows users to manage orders, menu items, and more."
+                    imageSrc="src/assets/projects/haste-urant.png"
                     tech={['HTML', 'CSS', 'Javascript', 'PHP', 'SQL', 'Python']}
-                    githubLink="https://github.com/yourusername/agrika"
+                    githubLink="https://github.com/yourusername/haste-urant.png"
                     reverse={false}
                 />
 
@@ -39,11 +38,10 @@ export const ProjectsSection = () => {
 
                 <ProjectCard
                     title="LORO"
-                    blackTitle=": Learn, Observe, Respond, Overcome"
                     description="A pitch about an AI-powered speech therapy app designed to empower Filipino children with speech disorders."
                     imageSrc="src/assets/projects/agrika.JPG"
                     tech={['Unity', 'C#', 'Game Development', '2D Art']}
-                    githubLink="https://github.com/yourusername/agrika"
+                    youtubeLink="https://www.youtube.com/watch?v=pl7zoGsUxuc&ab_channel=ZoePineda"
                     reverse={false}
                 />
 

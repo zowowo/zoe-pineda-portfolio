@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
-import { Github } from "lucide-react";
+import { Github, Youtube } from "lucide-react";
 
-export const ProjectCard = ({ title, blackTitle, description, imageSrc, tech, githubLink, reverse }) => {
+export const ProjectCard = ({ title, blackTitle, description, imageSrc, tech, githubLink, youtubeLink, reverse }) => {
   return (
     <div
       className={cn(
@@ -28,14 +28,30 @@ export const ProjectCard = ({ title, blackTitle, description, imageSrc, tech, gi
           ))}
         </div>
 
-        {/* Button */}
-        <a
+        <div className="flex gap-3 mt-4">
+          {githubLink && (
+            <a
           href={githubLink}
           target="_blank"
           className="inline-flex items-center gap-2 px-5 py-2 bg-primary text-primary-foreground rounded-full hover:scale-105 transition"
         >
-          <Github className="w-5 h-5" /> GitHub Repo
-        </a>
+              <Github className="w-5 h-5" /> GitHub Repo
+            </a>
+          )}
+
+          {youtubeLink && (
+            <a
+              href={youtubeLink}
+              target="_blank"
+              // className="reverse-button inline-flex items-center gap-2 border-red-500 text-red-500 hover:text-red-600"
+              className="inline-flex items-center gap-2 px-5 py-2 bg-primary text-primary-foreground rounded-full hover:scale-105 transition"
+              >
+              <Youtube className="w-5 h-5" /> Watch Video
+            </a>
+          )}
+        </div>
+        {/* Button */}
+        
       </div>
     </div>
   );
