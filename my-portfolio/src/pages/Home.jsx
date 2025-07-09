@@ -1,9 +1,9 @@
 import { StarBackground } from "../components/StarBackground";
-import { Navbar } from "../components/Navbar";
-import { HeroSection } from "../components/HeroSection";
-import { AboutSection } from "../components/AboutSection";
-import { SkillsSection } from "../components/SkillsSection";
-import { ProjectsSection } from "../components/ProjectsSection"
+import { Navbar } from "../components/Navbar.jsx";
+import { HeroSection } from "../components/HeroSection.jsx";
+import { AboutSection } from "../components/AboutSection.jsx";
+import { SkillsSection } from "../components/SkillsSection.jsx";
+import { ProjectsSection } from "../components/ProjectsSection.jsx"
 import { PracticumSection } from "../components/PracticumSection.jsx"
 import { GlassBackground } from "../components/GlassBackground.jsx";
 

@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import { useState, useEffect } from "react";
-import { ThemeToggle } from "../components/ThemeToggle";
+import { ThemeToggle } from "../components/ThemeToggle.jsx";
 import { Menu, X } from "lucide-react";
 
 

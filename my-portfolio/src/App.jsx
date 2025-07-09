@@ -1,7 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import { Home } from "./pages/Home" 
-import { NotFound } from "./pages/NotFound" 
-import { useEffect } from "react";
+import { Home } from "./pages/Home.jsx" 
+import { NotFound } from "./pages/NotFound.jsx" 
 
 function App() {
   return (

@@ -1,4 +1,9 @@
 import { ProjectCard } from "./ProjectCard.jsx";
+import agrikaImage from '../assets/projects/agrika.png';
+import hasteurantImage from '../assets/projects/haste-urant.png';
+import bibeKalmaImage from '../assets/projects/agrika.png';
+import loroImage from '../assets/projects/agrika.png';
+
 
 export const ProjectsSection = () => {
     return <div>
@@ -12,7 +17,7 @@ export const ProjectsSection = () => {
                 <ProjectCard
                     title="AgriKA"
                     description="A CNN-LSTM based tool for visualizing and predicting rice yields using satellite imagery."
-                    imageSrc="src/assets/projects/agrika.png"
+                    imageSrc={agrikaImage}
                     tech={['Flask', 'Python', 'CNN', 'LSTM', 'TensorFlow', 'SQL']}
                     githubLink="https://github.com/yourusername/agrika"
                     reverse={true}
@@ -21,7 +26,7 @@ export const ProjectsSection = () => {
                 <ProjectCard
                     title="Haste-urant"
                     description="A restaurant management system that allows users to manage orders, menu items, and more."
-                    imageSrc="src/assets/projects/haste-urant.png"
+                    imageSrc={hasteurantImage}
                     tech={['HTML', 'CSS', 'Javascript', 'PHP', 'SQL', 'Python']}
                     githubLink="https://github.com/yourusername/haste-urant.png"
                     reverse={false}
@@ -30,7 +35,7 @@ export const ProjectsSection = () => {
                 <ProjectCard
                     title="Bibe Kalma"
                     description="A Unity-based platformer game that follows a  young duckling navigating the world and overcoming challenges like campfires and predators."
-                    imageSrc="src/assets/projects/agrika.JPG"
+                    imageSrc={bibeKalmaImage}
                     tech={['Unity', 'C#', 'Game Development', '2D Art']}
                     githubLink="https://github.com/yourusername/agrika"
                     reverse={true}
@@ -39,7 +44,7 @@ export const ProjectsSection = () => {
                 <ProjectCard
                     title="LORO"
                     description="A pitch about an AI-powered speech therapy app designed to empower Filipino children with speech disorders."
-                    imageSrc="src/assets/projects/agrika.JPG"
+                    imageSrc={loroImage}
                     tech={['Unity', 'C#', 'Game Development', '2D Art']}
                     youtubeLink="https://www.youtube.com/watch?v=pl7zoGsUxuc&ab_channel=ZoePineda"
                     reverse={false}
