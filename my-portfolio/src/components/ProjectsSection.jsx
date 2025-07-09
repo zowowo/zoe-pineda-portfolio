@@ -1,8 +1,8 @@
 import { ProjectCard } from "./ProjectCard.jsx";
 import agrikaImage from '../assets/projects/agrika.png';
 import hasteurantImage from '../assets/projects/haste-urant.png';
-import bibeKalmaImage from '../assets/projects/agrika.png';
-import loroImage from '../assets/projects/agrika.png';
+import bibeKalmaImage from '../assets/projects/bibekalma.png';
+import loroImage from '../assets/projects/loro.png';
 
 
 export const ProjectsSection = () => {
