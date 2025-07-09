@@ -1,22 +1,33 @@
 import { useState } from "react";
+import htmlIcon from '../assets/skills/html.svg';
+import cssIcon from '../assets/skills/css.svg';
+import jsIcon from '../assets/skills/javascript.svg';
+import reactIcon from '../assets/skills/react.svg';
+import tailwindIcon from '../assets/skills/tailwind.svg';
+import bootstrapIcon from '../assets/skills/bootstrap.svg';
+import pythonIcon from '../assets/skills/python.svg';
+import postmanIcon from '../assets/skills/postman.svg';
+import flutterIcon from '../assets/skills/flutter.svg';
+import vscodeIcon from '../assets/skills/vscode.svg';
+import figmaIcon from '../assets/skills/figma.svg';
 import { Database, Github, GitMerge } from "lucide-react";
 import clsx from "clsx";
 
 const skills = [
-  { name: "HTML", category: "Frontend", icon: "src/assets/skills/html.svg" },
-  { name: "CSS", category: "Frontend", icon: "src/assets/skills/css.svg" },
-  { name: "JavaScript", category: "Frontend", icon: "src/assets/skills/javascript.svg" },
-  { name: "React", category: "Frontend", icon: "src/assets/skills/react.svg" },
-  { name: "Tailwind CSS", category: "Frontend", icon: "src/assets/skills/tailwind.svg" },
-  { name: "Bootstrap", category: "Frontend", icon: "src/assets/skills/bootstrap.svg" },
-  { name: "Python", category: "Backend", icon: "src/assets/skills/python.svg" },
-  { name: "Postman", category: "Tools", icon: "src/assets/skills/postman.svg" },
+  { name: "HTML", category: "Frontend", icon: htmlIcon },
+  { name: "CSS", category: "Frontend", icon: cssIcon },
+  { name: "JavaScript", category: "Frontend", icon: jsIcon },
+  { name: "React", category: "Frontend", icon: reactIcon },
+  { name: "Tailwind CSS", category: "Frontend", icon: tailwindIcon },
+  { name: "Bootstrap", category: "Frontend", icon: bootstrapIcon },
+  { name: "Python", category: "Backend", icon: pythonIcon },
+  { name: "Postman", category: "Tools", icon: postmanIcon },
   { name: "Github", category: "Tools", icon: Github },
   { name: "Git", category: "Tools", icon: GitMerge },
-  { name: "Flutter", category: "Mobile Development", icon: "src/assets/skills/flutter.svg" },
+  { name: "Flutter", category: "Mobile Development", icon: flutterIcon },
   { name: "MySQL", category: "Backend", icon: Database },
-  { name: "VSCode", category: "Tools", icon: "src/assets/skills/vscode.svg" },
-  { name: "Figma", category: "Tools", icon: "src/assets/skills/figma.svg"},
+  { name: "VSCode", category: "Tools", icon: vscodeIcon },
+  { name: "Figma", category: "Tools", icon: figmaIcon },
 ];
 
 const categories = ["All", "Frontend", "Backend", "Mobile Development", "Tools"];

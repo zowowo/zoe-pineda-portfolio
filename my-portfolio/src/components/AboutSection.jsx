@@ -1,3 +1,4 @@
+import zoeImage from '../assets/zoe-pineda.jpg';
 
 export const AboutSection = () => {
     return (
@@ -15,7 +16,7 @@ export const AboutSection = () => {
                     {/* Image Section */}
                     <div className="flex-shrink-0">
                         <img 
-                            src="src/assets/zoe-pineda.jpg" 
+                            src={zoeImage}
                             alt="Zoe Pineda" 
                             className="w-50 md:w-60 rounded object-cover shadow-lg"
                             // class names for making it gray by default and color on hover
