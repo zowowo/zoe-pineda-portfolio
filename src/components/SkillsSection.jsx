@@ -1,54 +1,64 @@
 import { useState } from "react";
-import { cn } from "@/lib/utils";
+import htmlIcon from '../assets/skills/html.svg';
+import cssIcon from '../assets/skills/css.svg';
+import jsIcon from '../assets/skills/javascript.svg';
+import reactIcon from '../assets/skills/react.svg';
+import tailwindIcon from '../assets/skills/tailwind.svg';
+import bootstrapIcon from '../assets/skills/bootstrap.svg';
+import pythonIcon from '../assets/skills/python.svg';
+import postmanIcon from '../assets/skills/postman.svg';
+import flutterIcon from '../assets/skills/flutter.svg';
+import vscodeIcon from '../assets/skills/vscode.svg';
+import figmaIcon from '../assets/skills/figma.svg';
+import { Database, Github, GitMerge } from "lucide-react";
+import clsx from "clsx";
 
 const skills = [
-  // Frontend
-  { name: "HTML/CSS", level: 95, category: "frontend" },
-  { name: "JavaScript", level: 90, category: "frontend" },
-  { name: "React", level: 90, category: "frontend" },
-  { name: "TypeScript", level: 85, category: "frontend" },
-  { name: "Tailwind CSS", level: 90, category: "frontend" },
-  { name: "Next.js", level: 80, category: "frontend" },
-
-  // Backend
-  { name: "Node.js", level: 80, category: "backend" },
-  { name: "Express", level: 75, category: "backend" },
-  { name: "MongoDB", level: 70, category: "backend" },
-  { name: "PostgreSQL", level: 65, category: "backend" },
-  { name: "GraphQL", level: 60, category: "backend" },
-
-  // Tools
-  { name: "Git/GitHub", level: 90, category: "tools" },
-  { name: "Docker", level: 70, category: "tools" },
-  { name: "Figma", level: 85, category: "tools" },
-  { name: "VS Code", level: 95, category: "tools" },
+  { name: "HTML", category: "Frontend", icon: htmlIcon },
+  { name: "CSS", category: "Frontend", icon: cssIcon },
+  { name: "JavaScript", category: "Frontend", icon: jsIcon },
+  { name: "React", category: "Frontend", icon: reactIcon },
+  { name: "Tailwind CSS", category: "Frontend", icon: tailwindIcon },
+  { name: "Bootstrap", category: "Frontend", icon: bootstrapIcon },
+  { name: "Python", category: "Backend", icon: pythonIcon },
+  { name: "Postman", category: "Tools", icon: postmanIcon },
+  { name: "Github", category: "Tools", icon: Github },
+  { name: "Git", category: "Tools", icon: GitMerge },
+  { name: "Flutter", category: "Mobile Development", icon: flutterIcon },
+  { name: "MySQL", category: "Backend", icon: Database },
+  { name: "VSCode", category: "Tools", icon: vscodeIcon },
+  { name: "Figma", category: "Tools", icon: figmaIcon },
 ];
 
-const categories = ["all", "frontend", "backend", "tools"];
+const categories = ["All", "Frontend", "Backend", "Mobile Development", "Tools"];
 
 export const SkillsSection = () => {
-  const [activeCategory, setActiveCategory] = useState("all");
+  const [activeCategory, setActiveCategory] = useState("All");
 
-  const filteredSkills = skills.filter(
-    (skill) => activeCategory === "all" || skill.category === activeCategory
-  );
+  const filteredSkills =
+    activeCategory === "All"
+      ? skills
+      : skills.filter((skill) => skill.category === activeCategory);
+
   return (
-    <section id="skills" className="py-24 px-4 relative bg-secondary/30">
-      <div className="container mx-auto max-w-5xl">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-          My <span className="text-primary"> Skills</span>
+    <section id="skills" className="py-24 px-4 relative">
+      <div className="container mx-auto max-w-4xl">
+        <h2 className="text-4xl font-bold text-center mb-8">
+          <span className="text-primary">Skills</span>{" "}
+          <span className="text-foreground">and Technologies</span>
         </h2>
 
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {categories.map((category, key) => (
+        {/* Filter Buttons */}
+        <div className="flex justify-center mb-10 flex-wrap gap-3">
+          {categories.map((category) => (
             <button
-              key={key}
+              key={category}
               onClick={() => setActiveCategory(category)}
-              className={cn(
-                "px-5 py-2 rounded-full transition-colors duration-300 capitalize",
+              className={clsx(
+                "px-4 py-2 rounded-full transition-all duration-300 text-sm font-medium",
                 activeCategory === category
                   ? "bg-primary text-primary-foreground"
-                  : "bg-secondary/70 text-forefround hover:bd-secondary"
+                  : "bg-muted text-muted-foreground hover:bg-primary/10 hover:text-primary"
               )}
             >
               {category}
@@ -56,27 +66,23 @@ export const SkillsSection = () => {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredSkills.map((skill, key) => (
+        {/* Grid of Skills */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
+          {filteredSkills.map((skill, idx) => (
             <div
-              key={key}
-              className="bg-card p-6 rounded-lg shadow-xs card-hover"
+              key={idx}
+              className="bg-card rounded-lg shadow-md p-5 flex flex-col items-center justify-center hover:shadow-lg transition-transform duration-300 hover:scale-[1.03]"
             >
-              <div className="text-left mb-4">
-                <h3 className="font-semibold text-lg"> {skill.name}</h3>
-              </div>
-              <div className="w-full bg-secondary/50 h-2 rounded-full overflow-hidden">
-                <div
-                  className="bg-primary h-2 rounded-full origin-left animate-[grow_1.5s_ease-out]"
-                  style={{ width: skill.level + "%" }}
+              {typeof skill.icon === "string" ? (
+                <img
+                  src={skill.icon}
+                  alt={skill.name}
+                  className="w16 h-16 mb-3"
                 />
-              </div>
-
-              <div className="text-right mt-1">
-                <span className="text-sm text-muted-foreground">
-                  {skill.level}%
-                </span>
-              </div>
+              ) : (
+                <skill.icon className="w-16 h-16 mb-3 text-foreground" />
+              )}
+              <p className="text-sm text-muted-foreground">{skill.name}</p>
             </div>
           ))}
         </div>

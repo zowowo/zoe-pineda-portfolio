@@ -1,95 +1,48 @@
-import { Briefcase, Code, User } from "lucide-react";
+import zoeImage from '../assets/zoe-pineda-3.png';
+import { motion } from "framer-motion"; // ✅ import motion
 
 export const AboutSection = () => {
-  return (
-    <section id="about" className="py-24 px-4 relative">
-      {" "}
-      <div className="container mx-auto max-w-5xl">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-          About <span className="text-primary"> Me</span>
-        </h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6">
-            <h3 className="text-2xl font-semibold">
-              Passionate Web Developer & Tech Creator
-            </h3>
-
-            <p className="text-muted-foreground">
-              With over 5 years of experience in web development, I specialize
-              in creating responsive, accessible, and performant web
-              applications using modern technologies.
-            </p>
-
-            <p className="text-muted-foreground">
-              I'm passionate about creating elegant solutions to complex
-              problems, and I'm constantly learning new technologies and
-              techniques to stay at the forefront of the ever-evolving web
-              landscape.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
-              <a href="#contact" className="cosmic-button">
-                {" "}
-                Get In Touch
-              </a>
-
-              <a
-                href=""
-                className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300"
-              >
-                Download CV
-              </a>
+    return (
+        <section id="about" className="py-24 px-4 relative">
+            {" "}
+            <div className="container mx-auto max-w-5xl">
+                <h2 className="text-4xl md:text-4xl font-bold text-center mb-12">
+                    About <span className="text-primary"> Me </span>
+                </h2>
             </div>
-          </div>
 
-          <div className="grid grid-cols-1 gap-6">
-            <div className="gradient-border p-6 card-hover">
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <Code className="h-6 w-6 text-primary" />
-                </div>
-                <div className="text-left">
-                  <h4 className="font-semibold text-lg"> Web Development</h4>
-                  <p className="text-muted-foreground">
-                    Creating responsive websites and web applications with
-                    modern frameworks.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="gradient-border p-6 card-hover">
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <User className="h-6 w-6 text-primary" />
-                </div>
-                <div className="text-left">
-                  <h4 className="font-semibold text-lg">UI/UX Design</h4>
-                  <p className="text-muted-foreground">
-                    Designing intuitive user interfaces and seamless user
-                    experiences.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="gradient-border p-6 card-hover">
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <Briefcase className="h-6 w-6 text-primary" />
-                </div>
+            <div className="container mx-auto max-w-5xl px-4">
+                <div className="flex flex-col md:flex-row items-center md:items-start justify-center gap-8">
+                    
+                    <motion.img
+                        src={zoeImage}
+                        alt="Zoe Pineda"
+                        className="w-48 md:w-60 drop-shadow-[0_0_15px_rgba(255,255,255,0.15)]"
+                        style={{ mixBlendMode: "lighten" }} // Optional depending on background
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.6, ease: "easeOut" }}
+                        whileHover={{ rotate: [0, -2, 2, 0] }}
+                        />
 
-                <div className="text-left">
-                  <h4 className="font-semibold text-lg">Project Management</h4>
-                  <p className="text-muted-foreground">
-                    Leading projects from conception to completion with agile
-                    methodologies.
-                  </p>
+                    {/* Text Section */}
+                    <div className="text-center md:text-left">
+                        <p className="text-lg md:text-xl text-muted-foreground text-foreground/90 mb-4">
+                            I'm <span className="font-bold text-primary">Zoe</span>, a passionate software engineer with a knack for creating intuitive digital experiences. 
+                            I love solving real-world problems through code and am always eager to learn new technologies.
+                        </p>
+                        <p className="text-lg md:text-xl text-muted-foreground text-foreground/90">
+                            My journey in tech has been fueled by curiosity and a desire to make a positive impact through my work. 
+                            I thrive in collaborative environments and enjoy tackling challenges head-on.
+                        </p>
+
+                        
+                    </div>
+
+                    
+
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
+                </div>
+            
+        </section>
+    )
+}
