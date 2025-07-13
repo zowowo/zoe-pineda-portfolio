@@ -1,5 +1,5 @@
 import { ArrowDown, Github, Mail, Linkedin, Download } from "lucide-react";
-import zoeImage from "../assets/zoe-pineda.jpg"; // Use a transparent background image for best effect
+import zoeImage from "../assets/zoe-pineda-1.png"; // Use a transparent background image for best effect
 
 export const HeroSection = () => {
   return (
@@ -42,15 +42,17 @@ export const HeroSection = () => {
             </div>
           </div>
 
-          {/* Image Section */}
-          <div className="md:w-1/2 flex justify-center">
+          <div className="relative flex justify-center items-center">
+            <div className="absolute w-100 h-110 bg-primary/80 animate-[morph_10s_ease-in-out_infinite] z-0" />
             <img
               src={zoeImage}
               alt="Zoe Pineda"
-            className="w-80 h-90 md:w-98 md:h-120 object-cover rounded-full border-2 border-primary shadow-lg"
-
+              className="relative z-10 w-110 h-120 object-cover rounded-full border-primary shadow-lg"
             />
           </div>
+
+
+          
         </div>
       </div>
 

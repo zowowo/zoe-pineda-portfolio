@@ -69,9 +69,9 @@
 
     --card: 0 0% 100%;
 
-    --primary: 205 70% 60%; 
+    --primary: 205 70% 60%;
     --primary-foreground: 210 40% 98%;
-    
+
     --border: 214 32% 91%;
   }
 
@@ -81,9 +81,9 @@
 
     --card: 222 47% 8%;
 
-    --primary: 205 70% 60%; 
+    --primary: 205 70% 60%;
     --primary-foreground: 213 31% 91%;
-    
+
     --border: 217 33% 20%;
   }
 
@@ -168,4 +168,16 @@
   margin: 0 auto;
   padding: 0;
   text-align: center;
+}
+
+@keyframes morph {
+  0% {
+    border-radius: 42% 58% 65% 35% / 56% 47% 53% 44%;
+  }
+  50% {
+    border-radius: 57% 43% 38% 62% / 36% 63% 37% 64%;
+  }
+  100% {
+    border-radius: 42% 58% 65% 35% / 56% 47% 53% 44%;
+  }
 }
