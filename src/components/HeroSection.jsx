@@ -43,11 +43,11 @@ export const HeroSection = () => {
           </div>
 
           <div className="relative flex justify-center items-center">
-            <div className="absolute w-100 h-110 bg-primary/80 animate-[morph_10s_ease-in-out_infinite] z-0" />
+            <div className="absolute w-110 h-110 bg-primary/80 animate-[morph_10s_ease-in-out_infinite] z-0" />
             <img
               src={zoeImage}
               alt="Zoe Pineda"
-              className="relative z-10 w-110 h-120 object-cover rounded-full border-primary shadow-lg"
+              className="relative z-10 w-130 h-140 object-cover rounded-full "
             />
           </div>
 
