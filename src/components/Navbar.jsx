@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const navItems = [
     {name: "About", href: "#about"},
@@ -8,6 +9,7 @@ const navItems = [
     {name: "Projects", href: "#projects"},
     {name: "Certifications", href: "#certifications"},
     {name: "Practicum", href: "#practicum"},
+    // {name: "Blog", href: "/blogs", isRoute: true},
     {name: "Let's Chat!", href: "#contact"}   
 ]
 
@@ -67,18 +69,30 @@ export const Navbar = () => {
         {/* desktop nav */}
         <div className="hidden md:flex space-x-8">
           {navItems.map((item, key) => (
-            <a
-              key={key}
-              href={item.href}
-              className={cn(
-                "text-foreground/80 hover:text-primary transition-colors duration-300 border-b-2",
-                activeSection === item.href.slice(1)
-                  ? "border-primary"
-                  : "border-transparent"
-              )}
-            >
-              {item.name}
-            </a>
+            item.isRoute ? (
+              <Link
+                key={key}
+                to={item.href}
+                className={cn(
+                  "text-foreground/80 hover:text-primary transition-colors duration-300 border-b-2 border-transparent"
+                )}
+              >
+                {item.name}
+              </Link>
+            ) : (
+              <a
+                key={key}
+                href={item.href}
+                className={cn(
+                  "text-foreground/80 hover:text-primary transition-colors duration-300 border-b-2",
+                  activeSection === item.href.slice(1)
+                    ? "border-primary"
+                    : "border-transparent"
+                )}
+              >
+                {item.name}
+              </a>
+            )
           ))}
         </div>
 
@@ -103,14 +117,25 @@ export const Navbar = () => {
         >
           <div className="flex flex-col space-y-8 text-xl">
             {navItems.map((item, key) => (
-              <a
-                key={key}
-                href={item.href}
-                className="text-foreground/80 hover:text-primary transition-colors duration-300"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item.name}
-              </a>
+              item.isRoute ? (
+                <Link
+                  key={key}
+                  to={item.href}
+                  className="text-foreground/80 hover:text-primary transition-colors duration-300"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item.name}
+                </Link>
+              ) : (
+                <a
+                  key={key}
+                  href={item.href}
+                  className="text-foreground/80 hover:text-primary transition-colors duration-300"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item.name}
+                </a>
+              )
             ))}
           </div>
         </div>

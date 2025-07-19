@@ -42,7 +42,7 @@ export const SkillsSection = () => {
 
   return (
     <section id="skills" className="py-24 px-4 relative">
-      <div className="container mx-auto max-w-4xl">
+      <div className="container mx-auto max-w-5xl">
         <h2 className="text-4xl font-bold text-center mb-8">
           <span className="text-primary">Skills</span>{" "}
           <span className="text-foreground">and Technologies</span>

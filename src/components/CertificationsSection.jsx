@@ -85,7 +85,7 @@ export const CertificationsSection = () => {
 
   return (
     <section id="certifications" className="py-24 px-4 relative">
-      <div className="container mx-auto max-w-4xl">
+      <div className="container mx-auto max-w-5xl">
         <h2 className="text-4xl font-bold text-center mb-12">
           <span className="text-primary">Certifications</span>{" "}
           <span className="text-foreground">and Achievements</span>
