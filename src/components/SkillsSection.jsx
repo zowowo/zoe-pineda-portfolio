@@ -67,7 +67,7 @@ export const SkillsSection = () => {
         </div>
 
         {/* Grid of Skills */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 min-h-[500px]">
           {filteredSkills.map((skill, idx) => (
             <div
               key={idx}

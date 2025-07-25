@@ -1,11 +1,15 @@
 import { motion } from "framer-motion";
-import { CalendarDays, MapPin, Clock } from "lucide-react";
+import { CalendarDays, MapPin, Clock, File } from "lucide-react";
+import stLogo from "../assets/stmicro1.png"; // Use a transparent background image for best effect
+import stLogoDark from "../assets/stmicro1.png";
+import stLogoLight from "../assets/stmicro.png";
+import { useEffect, useState } from "react";
 
 // Example practicum data
 const practicum = {
   company: {
     name: "STMicroelectronics, Inc.",
-    logo: "/src/assets/stmicro.svg", // Replace with your logo path
+    logo: stLogo, 
     overview:
       "STMicroelectronics, Inc. is a global semiconductor leader serving customers across the spectrum of electronics applications. During my practicum, I was immersed in a dynamic environment focused on digital transformation and agile development.",
     location: "Calamba, Laguna, Philippines",
@@ -21,12 +25,24 @@ const practicum = {
   conclusion:
     "The internship was transformative, blending software and hardware exposure in a real-world industrial setting. The student gained full-stack development experience, improved technical and soft skills, and contributed meaningfully to a production-grade system. The practicum fostered adaptability, teamwork, and a deeper understanding of how IT supports operational efficiency. It prepared the student to be a thoughtful and impactful contributor to the tech industry.",
   report: {
-    url: "/src/assets/Pineda, Zoe Narrative Report.pdf", // Replace with your actual report path
+    url: "https://drive.google.com/file/d/1DgG2cFMYt0BgdV2ePIvS0NbX1KKqzf8-/view?usp=sharing", // Replace with your actual report path
     name: "Pineda, Zoe Narrative Report.pdf"
   }
 };
 
 export const PracticumSection = () => {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    const storedTheme = localStorage.getItem("theme");
+    setIsDarkMode(storedTheme === "dark" || document.documentElement.classList.contains("dark"));
+    const observer = new MutationObserver(() => {
+      setIsDarkMode(document.documentElement.classList.contains("dark"));
+    });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section id="practicum" className="py-24 px-4 relative">
       <div className="container mx-auto max-w-5xl">
@@ -45,7 +61,11 @@ export const PracticumSection = () => {
           <div className="mb-6 flex flex-col items-center">
             {practicum.company.logo && (
               <div className="w-32 h-24 flex items-center justify-center mb-4">
-                <img src={practicum.company.logo} alt={practicum.company.name} className="max-w-full max-h-full object-contain" />
+                <img
+                  src={isDarkMode ? stLogoDark : stLogoLight}
+                  alt="STMicroelectronics, Inc."
+                  className="max-w-full max-h-full object-contain"
+                />
               </div>
             )}
             <h3 className="text-2xl font-bold text-primary mb-3 text-center">{practicum.company.name}</h3>
@@ -97,11 +117,12 @@ export const PracticumSection = () => {
               href={practicum.report.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-2 rounded-full bg-primary text-primary-foreground font-medium transition-all duration-300 hover:shadow-[0_0_10px_rgba(139,92,246,0.5)] hover:scale-105 active:scale-95"
-              download={practicum.report.name}
+              className="flex items-center gap-2 px-6 py-2 rounded-full bg-primary text-primary-foreground font-medium transition-all duration-300 hover:shadow-[0_0_10px_rgba(139,92,246,0.5)] hover:scale-105 active:scale-95 w-fit mx-auto"
             >
-              Download/View Report
+              <File className="h-5 w-5" />
+              View Report
             </a>
+
           </div>
         </motion.div>
       </div>
