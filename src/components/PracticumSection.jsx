@@ -11,7 +11,7 @@ const practicum = {
     name: "STMicroelectronics, Inc.",
     logo: stLogo, 
     overview:
-      "STMicroelectronics, Inc. is a global semiconductor leader serving customers across the spectrum of electronics applications. During my practicum, I was immersed in a dynamic environment focused on digital transformation and agile development.",
+      "STMicroelectronics, Inc. is a global semiconductor leader serving customers across the spectrum of electronics applications. During my internship, I was immersed in a dynamic environment focused on digital transformation and agile development.",
     location: "Calamba, Laguna, Philippines",
     dateRange: "April 2025 – June 2025"
   },
@@ -23,7 +23,7 @@ const practicum = {
   ],
   hours: 324,
   conclusion:
-    "The internship was transformative, blending software and hardware exposure in a real-world industrial setting. The student gained full-stack development experience, improved technical and soft skills, and contributed meaningfully to a production-grade system. The practicum fostered adaptability, teamwork, and a deeper understanding of how IT supports operational efficiency. It prepared the student to be a thoughtful and impactful contributor to the tech industry.",
+    "The internship was transformative, blending software and hardware exposure in a real-world industrial setting. The student gained full-stack development experience, improved technical and soft skills, and contributed meaningfully to a production-grade system. The internship fostered adaptability, teamwork, and a deeper understanding of how IT supports operational efficiency. It prepared the student to be a thoughtful and impactful contributor to the tech industry.",
   report: {
     url: "https://drive.google.com/file/d/1DgG2cFMYt0BgdV2ePIvS0NbX1KKqzf8-/view?usp=sharing", // Replace with your actual report path
     name: "Pineda, Zoe Narrative Report.pdf"
@@ -47,7 +47,7 @@ export const PracticumSection = () => {
     <section id="practicum" className="py-24 px-4 relative">
       <div className="container mx-auto max-w-5xl">
         <h2 className="text-4xl font-bold text-center mb-12">
-          <span className="text-primary">Practicum</span>{" "}
+          <span className="text-primary">Internship</span>{" "}
           <span className="text-foreground">Experience</span>
         </h2>
         <motion.div
@@ -112,7 +112,7 @@ export const PracticumSection = () => {
 
           {/* Practicum Final Report */}
           <div className="mb-2">
-            <h4 className="text-lg font-semibold text-primary mb-2">Practicum Final Report</h4>
+            <h4 className="text-lg font-semibold text-primary mb-2">Internship Final Report</h4>
             <a
               href={practicum.report.url}
               target="_blank"

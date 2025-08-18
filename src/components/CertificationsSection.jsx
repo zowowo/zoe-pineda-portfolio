@@ -6,15 +6,6 @@ import clsx from "clsx";
 // Example certifications data
 const certifications = [
   {
-    name: "React Developer Certification",
-    issuer: "Meta",
-    date: "June 2024",
-    icon: null,
-    category: "Frontend",
-    link: "https://www.example.com/react-cert",
-  },
-
-  {
     name: "CompTIA IT Fundamentals+ (ITF+)",
     issuer: "CompTIA",
     date: "June 2024",
@@ -48,15 +39,6 @@ const certifications = [
     icon: null,
     category: "Data Science",
     link: "https://www.datacamp.com/statement-of-accomplishment/track/5848df0d423cec13050f86e0b4ec7adce7f576e0?raw=1",
-  },
-
-  {
-    name: "TOEIC English Proficiency",
-    issuer: "Educational Testing Service (ETS)",
-    date: "Jan 2025",
-    icon: null,
-    category: "Language and Communication Skills",
-    link: "https://www.example.com/uiux-cert",
   },
 ];
 
