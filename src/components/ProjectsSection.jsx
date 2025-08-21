@@ -3,6 +3,7 @@ import agrikaImage from '../assets/projects/agrika.png';
 import hasteurantImage from '../assets/projects/haste-urant.png';
 import bibeKalmaImage from '../assets/projects/bibekalma.png';
 import loroImage from '../assets/projects/loro.png';
+import portfolioImage from '../assets/projects/personal-portfolio.png';
 
 const projects = [
   {
@@ -19,6 +20,15 @@ const projects = [
     tech: ['HTML', 'CSS', 'Javascript', 'PHP', 'SQL', 'Python'],
     githubLink: "https://github.com/GaWobi/Haste-aurant",
   },
+
+  {
+    title: "My Portfolio Website",
+    description: "A personal portfolio website I built showcasing my projects, skills, and experience.",
+    imageSrc: portfolioImage,
+    tech: ['React', 'Tailwind CSS', 'JavaScript'],
+    githubLink: "https://github.com/zowowo/zoe-pineda-portfolio",
+  }, 
+
   {
     title: "Bibe Kalma",
     description: "A Unity-based platformer game that follows a young duckling navigating the world and overcoming challenges like campfires and predators.",
