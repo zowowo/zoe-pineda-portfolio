@@ -122,10 +122,10 @@
   }
 }
 
-@utility text-glow {
+/* @utility text-glow {
   @apply relative;
-  text-shadow: 0 0 10px rgba(167, 139, 250, 0.5);
-}
+  text-shadow: 0 0 10px rgba(82, 165, 224, 0.5);
+} */
 
 @utility card-hover {
   @apply transition-transform duration-300 hover:scale-[1.02] hover:shadow-lg;

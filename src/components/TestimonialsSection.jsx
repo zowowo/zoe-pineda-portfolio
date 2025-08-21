@@ -9,7 +9,7 @@ const testimonials = [
     author: "Rowell Bilog",
     role: "Senior Test Product Engineer, STMicroelectronics, Inc.",
     avatar: "https://media.licdn.com/dms/image/v2/C5103AQERICB8PO-unA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1516633235028?e=1758153600&v=beta&t=NGKnBaye8INS9b4Nyv1uyK0Ep6EA_y34jOnyvRtOsI0",
-    date: "June 2024",
+    date: "July 2025",
     linkedin: "https://www.linkedin.com/in/rowell-bilog-837a4652"
   },
   

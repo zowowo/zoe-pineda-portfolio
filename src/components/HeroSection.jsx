@@ -23,7 +23,7 @@ export const HeroSection = () => {
               <a href="#projects" className="button">
                 View my work
               </a>
-              <a href="https://drive.google.com/file/d/1SQcZp8LNzlSJudV00zAhqGguys791O2T/view?usp=sharing" target="_blank" className="reverse-button flex items-center gap-2">
+              <a href="https://drive.google.com/file/d/10k2NfQT-emMZOd1wcdF5lkUKxvvlBghC/view?usp=sharing" target="_blank" className="reverse-button flex items-center gap-2">
                 <File className="h-5 w-5" /> View CV
               </a>
             </div>
