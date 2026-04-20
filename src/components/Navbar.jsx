@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { Menu, X } from "lucide-react";
+import { Menu, Moon, Sun, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -11,13 +11,36 @@ const navItems = [
     {name: "Internship", href: "#practicum"},
     {name: "Testimonials", href: "#testimonials"},
     // {name: "Blog", href: "/blogs", isRoute: true},
-    {name: "Let's Chat!", href: "#contact"}   
+    {name: "Contact", href: "#contact"}
 ]
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    const storedTheme = localStorage.getItem("theme");
+    if (storedTheme === "dark") {
+      setIsDarkMode(true);
+      document.documentElement.classList.add("dark");
+    } else {
+      localStorage.setItem("theme", "light");
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    if (isDarkMode) {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+      setIsDarkMode(false);
+    } else {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+      setIsDarkMode(true);
+    }
+  };
 
   useEffect(() => {
   const sections = document.querySelectorAll("section[id]");
@@ -62,21 +85,17 @@ export const Navbar = () => {
           className="text-xl font-bold text-primary flex items-center"
           href="#hero"
         >
-          <span className="relative z-10">
-              <span className="text-glow text-primary">Zoe</span> Pineda
-          </span>
+          Zoe Pineda
         </a>
 
         {/* desktop nav */}
-        <div className="hidden md:flex space-x-8">
+        <div className="hidden md:flex items-center space-x-6 text-sm">
           {navItems.map((item, key) => (
             item.isRoute ? (
               <Link
                 key={key}
                 to={item.href}
-                className={cn(
-                  "text-foreground/80 hover:text-primary transition-colors duration-300 border-b-2 border-transparent"
-                )}
+                className="nav-link"
               >
                 {item.name}
               </Link>
@@ -85,16 +104,21 @@ export const Navbar = () => {
                 key={key}
                 href={item.href}
                 className={cn(
-                  "text-foreground/80 hover:text-primary transition-colors duration-300 border-b-2",
-                  activeSection === item.href.slice(1)
-                    ? "border-primary"
-                    : "border-transparent"
+                  "nav-link",
+                  activeSection === item.href.slice(1) && "nav-link-active"
                 )}
               >
                 {item.name}
               </a>
             )
           ))}
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-md text-foreground/60 hover:text-primary transition-colors duration-200"
+            aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
+          >
+            {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+          </button>
         </div>
 
         {/* mobile nav */}
@@ -122,7 +146,7 @@ export const Navbar = () => {
                 <Link
                   key={key}
                   to={item.href}
-                  className="text-foreground/80 hover:text-primary transition-colors duration-300"
+                  className="text-foreground/80 hover:text-primary transition-colors duration-200"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
@@ -131,13 +155,21 @@ export const Navbar = () => {
                 <a
                   key={key}
                   href={item.href}
-                  className="text-foreground/80 hover:text-primary transition-colors duration-300"
+                  className="text-foreground/80 hover:text-primary transition-colors duration-200"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
                 </a>
               )
             ))}
+            <button
+              onClick={toggleTheme}
+              className="flex items-center justify-center gap-2 text-foreground/80 hover:text-primary transition-colors duration-200"
+              aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
+            >
+              {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+              {isDarkMode ? "Light mode" : "Dark mode"}
+            </button>
           </div>
         </div>
       </div>
