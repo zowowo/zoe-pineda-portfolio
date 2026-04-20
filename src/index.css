@@ -1,42 +1,24 @@
 @import "tailwindcss";
 
 @theme {
-  --color-border: hsl(var(--border));
-  --color-background: hsl(var(--background));
-  --color-foreground: hsl(var(--foreground));
+  /* Color tokens — resolved from CSS variables swapped by .dark */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-secondary: var(--secondary);
 
-  --color-primary: hsl(var(--primary));
-  --color-primary-foreground: hsl(var(--primary-foreground));
-
-  --color-card: hsl(var(--card));
-
-  --animate-float: float 6s ease-in-out infinite;
-  --animate-pulse-subtle: pulse-subtle 4s ease-in-out infinite;
+  /* Animations — kept from original, minus removed ones */
   --animate-fade-in: fade-in 0.7s ease-out forwards;
   --animate-fade-in-delay-1: fade-in 0.7s ease-out 0.2s forwards;
   --animate-fade-in-delay-2: fade-in 0.7s ease-out 0.4s forwards;
   --animate-fade-in-delay-3: fade-in 0.7s ease-out 0.6s forwards;
   --animate-fade-in-delay-4: fade-in 0.7s ease-out 0.8s forwards;
-  --animate-meteor: meteor 5s linear infinite;
 
-  @keyframes float {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-  }
-  @keyframes pulse-subtle {
-    0%,
-    100% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0.8;
-    }
-  }
   @keyframes fade-in {
     from {
       opacity: 0;
@@ -47,44 +29,33 @@
       transform: translateY(0);
     }
   }
-  @keyframes meteor {
-    0% {
-      transform: rotate(215deg) translateX(0);
-      opacity: 1;
-    }
-    70% {
-      opacity: 1;
-    }
-    100% {
-      transform: rotate(215deg) translateX(-500px);
-      opacity: 0;
-    }
-  }
 }
 
 @layer base {
   :root {
-    --background: 210 40% 98%;
-    --foreground: 222 47% 11%;
-
-    --card: 0 0% 100%;
-
-    --primary: 205 70% 60%;
-    --primary-foreground: 210 40% 98%;
-
-    --border: 214 32% 91%;
+    /* Light mode — warm cream base, maroon accent */
+    --background: oklch(0.97 0.006 30);
+    --foreground: oklch(0.18 0.025 25);
+    --card: oklch(0.99 0.003 30);
+    --primary: oklch(0.30 0.10 25);
+    --primary-foreground: oklch(0.96 0.008 30);
+    --border: oklch(0.90 0.012 30);
+    --muted: oklch(0.94 0.008 30);
+    --muted-foreground: oklch(0.48 0.02 25);
+    --secondary: oklch(0.95 0.015 30);
   }
 
   .dark {
-    --background: 222 47% 4%;
-    --foreground: 213 31% 91%;
-
-    --card: 222 47% 8%;
-
-    --primary: 205 70% 60%;
-    --primary-foreground: 213 31% 91%;
-
-    --border: 217 33% 20%;
+    /* Dark mode — warm charcoal base, lighter maroon accent */
+    --background: oklch(0.14 0.012 25);
+    --foreground: oklch(0.90 0.01 30);
+    --card: oklch(0.19 0.012 25);
+    --primary: oklch(0.58 0.14 22);
+    --primary-foreground: oklch(0.95 0.008 30);
+    --border: oklch(0.26 0.015 25);
+    --muted: oklch(0.22 0.012 25);
+    --muted-foreground: oklch(0.62 0.015 25);
+    --secondary: oklch(0.20 0.015 25);
   }
 
   * {
@@ -97,7 +68,12 @@
 
   body {
     @apply bg-background text-foreground transition-colors duration-300;
+    font-family: "Karla", system-ui, sans-serif;
     font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  h1, h2, h3 {
+    font-family: "Vollkorn", Georgia, serif;
   }
 }
 
@@ -122,62 +98,74 @@
   }
 }
 
-/* @utility text-glow {
-  @apply relative;
-  text-shadow: 0 0 10px rgba(82, 165, 224, 0.5);
-} */
-
 @utility card-hover {
-  @apply transition-transform duration-300 hover:scale-[1.02] hover:shadow-lg;
+  @apply transition-shadow duration-200 hover:shadow-md;
 }
 
-@utility gradient-border {
-  @apply relative rounded-md;
-  background: linear-gradient(to right, hsl(var(--card)), hsl(var(--card)));
-  background-clip: padding-box;
-  border: 1px solid transparent;
+/* Buttons — using plain CSS for pseudo-state support */
+.button {
+  @apply px-6 py-2 rounded-md bg-primary text-primary-foreground font-medium;
+  transition: transform 0.1s, opacity 0.2s;
+}
+.button:hover {
+  opacity: 0.85;
+}
+.button:active {
+  transform: translateY(1px);
 }
 
-@utility button {
-  @apply px-6 py-2 rounded-full bg-primary text-primary-foreground font-medium 
-         transition-all duration-300 hover:shadow-[0_0_10px_rgba(139,92,246,0.5)]
-         hover:scale-105 active:scale-95;
+.reverse-button {
+  @apply px-6 py-2 rounded-md bg-transparent text-primary font-medium;
+  border: 1.5px solid var(--primary);
+  transition: background-color 0.2s, transform 0.1s;
+}
+.reverse-button:hover {
+  background-color: color-mix(in oklch, var(--primary) 10%, transparent);
+}
+.reverse-button:active {
+  transform: translateY(1px);
 }
 
-@utility reverse-button {
-  /* our pre-defined colors in the beginning of the file */
-  @apply px-6 py-2 rounded-full bg-transparent text-primary font-medium
-          transition-all duration-300 hover:shadow-[0_0_10px_rgba(139,92,246,0.5)] 
-          hover:scale-105 active:scale-95;
-
-  border: 2px solid hsl(var(--primary));
+/* Nav link with sliding underline */
+.nav-link {
+  position: relative;
+  color: color-mix(in oklch, var(--foreground) 80%, transparent);
+  transition: color 0.2s;
 }
-
-@utility star {
-  @apply absolute rounded-full bg-white;
-  box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.4);
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 1px;
+  width: 100%;
+  background: var(--primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1);
 }
-
-@utility meteor {
-  @apply absolute bg-linear-to-r from-white via-white to-transparent rounded-full;
-  box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.3);
+.nav-link:hover {
+  color: var(--primary);
+}
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
+.nav-link-active {
+  color: var(--primary);
+}
+.nav-link-active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 1px;
+  width: 100%;
+  background: var(--primary);
+  transform: scaleX(1);
 }
 
 #root {
   max-width: 100%;
   margin: 0 auto;
   padding: 0;
-  text-align: center;
-}
-
-@keyframes morph {
-  0% {
-    border-radius: 42% 58% 65% 35% / 56% 47% 53% 44%;
-  }
-  50% {
-    border-radius: 57% 43% 38% 62% / 36% 63% 37% 64%;
-  }
-  100% {
-    border-radius: 42% 58% 65% 35% / 56% 47% 53% 44%;
-  }
 }
