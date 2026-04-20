@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import htmlIcon from '../assets/skills/html.svg';
 import cssIcon from '../assets/skills/css.svg';
 import jsIcon from '../assets/skills/javascript.svg';
@@ -41,11 +42,10 @@ export const SkillsSection = () => {
       : skills.filter((skill) => skill.category === activeCategory);
 
   return (
-    <section id="skills" className="py-24 px-4 relative">
+    <section id="skills" className="py-24 px-4">
       <div className="container mx-auto max-w-5xl">
-        <h2 className="text-4xl font-bold text-center mb-8">
-          <span className="text-primary">Skills</span>{" "}
-          <span className="text-foreground">and Technologies</span>
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
+          Skills &amp; Technologies
         </h2>
 
         {/* Filter Buttons */}
@@ -55,7 +55,7 @@ export const SkillsSection = () => {
               key={category}
               onClick={() => setActiveCategory(category)}
               className={clsx(
-                "px-4 py-2 rounded-full transition-all duration-300 text-sm font-medium",
+                "px-3 py-1.5 rounded-md transition-colors duration-200 text-sm font-medium",
                 activeCategory === category
                   ? "bg-primary text-primary-foreground"
                   : "bg-muted text-muted-foreground hover:bg-primary/10 hover:text-primary"
@@ -67,25 +67,35 @@ export const SkillsSection = () => {
         </div>
 
         {/* Grid of Skills */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 min-h-[500px]">
-          {filteredSkills.map((skill, idx) => (
-            <div
-              key={idx}
-              className="bg-card rounded-lg shadow-md p-5 flex flex-col items-center justify-center hover:shadow-lg transition-transform duration-300 hover:scale-[1.03]"
-            >
-              {typeof skill.icon === "string" ? (
-                <img
-                  src={skill.icon}
-                  alt={skill.name}
-                  className="w16 h-16 mb-3"
-                />
-              ) : (
-                <skill.icon className="w-16 h-16 mb-3 text-foreground" />
-              )}
-              <p className="text-sm text-muted-foreground">{skill.name}</p>
-            </div>
-          ))}
-        </div>
+        <motion.div
+          layout
+          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4"
+        >
+          <AnimatePresence mode="popLayout">
+            {filteredSkills.map((skill) => (
+              <motion.div
+                key={skill.name}
+                layout
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
+                className="bg-card rounded-lg p-5 flex flex-col items-center justify-center border border-border transition-colors duration-200 hover:border-primary/30"
+              >
+                {typeof skill.icon === "string" ? (
+                  <img
+                    src={skill.icon}
+                    alt={skill.name}
+                    className="w-10 h-10 mb-3"
+                  />
+                ) : (
+                  <skill.icon className="w-10 h-10 mb-3 text-foreground" />
+                )}
+                <p className="text-sm text-muted-foreground">{skill.name}</p>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
       </div>
     </section>
   );

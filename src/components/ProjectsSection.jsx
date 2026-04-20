@@ -47,13 +47,13 @@ const projects = [
 
 export const ProjectsSection = () => {
   return (
-    <section id="projects" className="py-24 px-4 relative min-h-screen mt-24">
+    <section id="projects" className="py-24 px-4">
       <div className="container mx-auto max-w-5xl">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-6">
-          Notable <span className="text-primary">Projects</span>
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+          Projects
         </h2>
-        <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          A collection of apps, tools, and games I’ve built with love and lots of debugging.
+        <p className="text-center text-muted-foreground mb-12 max-w-lg mx-auto">
+          Apps, tools, and games I’ve built.
         </p>
 
         {projects.map((project, index) => (

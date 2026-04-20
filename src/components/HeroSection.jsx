@@ -1,4 +1,4 @@
-import { ArrowDown, Github, Mail, Linkedin, File } from "lucide-react";
+import { Github, Mail, Linkedin, File } from "lucide-react";
 import zoeImage from "../assets/zoe-pineda-1.png"; // Use a transparent background image for best effect
 
 export const HeroSection = () => {
@@ -9,13 +9,13 @@ export const HeroSection = () => {
           
           {/* Text Section */}
           <div className="text-center md:text-left space-y-6 md:w-1/2">
-            <h1 className="text-4xl md:text-6xl font-bold text-foreground/90 tracking-tight">
-              <span className="opacity-0 animate-fade-in">Hi! I'm</span>
-              <span className="text-primary opacity-0 animate-fade-in-delay-1"> Zoe</span>
-              <span className="text-foreground ml-2 opacity-0 animate-fade-in-delay-2">Pineda.</span>
+            <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
+              <span className="opacity-0 animate-fade-in">Hi, I'm</span>
+              <span className="opacity-0 animate-fade-in-delay-1"> Zoe</span>
+              <span className="opacity-0 animate-fade-in-delay-2"> Pineda.</span>
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-xl opacity-0 animate-fade-in-delay-3">
-              A <span className="text-primary">software engineer</span> with a love for building intuitive digital experiences and solving real-world problems through code.
+            <p className="text-lg md:text-xl text-muted-foreground max-w-lg opacity-0 animate-fade-in-delay-3">
+              Software engineer who builds intuitive digital experiences and solves real-world problems through code.
             </p>
 
             {/* Buttons */}
@@ -23,31 +23,30 @@ export const HeroSection = () => {
               <a href="#projects" className="button">
                 View my work
               </a>
-              <a href="https://drive.google.com/file/d/1m2AWkwp4Y8XLnd5xIgZuPwYSuprhP7Pd/view?usp=sharing" target="_blank" className="reverse-button flex items-center gap-2">
+              <a href="https://drive.google.com/file/d/1m2AWkwp4Y8XLnd5xIgZuPwYSuprhP7Pd/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="reverse-button flex items-center gap-2">
                 <File className="h-5 w-5" /> View CV
               </a>
             </div>
 
             {/* Social Links */}
-            <div className="flex justify-center md:justify-start gap-6 pt-6">
-              <a href="https://www.linkedin.com/in/zoe-aleczandra-pineda/" target="_blank" title="Connect on LinkedIn">
-                <Linkedin className="h-6 w-6 text-primary hover:scale-125 transition-transform duration-300" />
+            <div className="flex justify-center md:justify-start gap-2 pt-6">
+              <a href="https://www.linkedin.com/in/zoe-aleczandra-pineda/" target="_blank" rel="noopener noreferrer" title="Connect on LinkedIn" className="min-w-[44px] min-h-[44px] flex items-center justify-center text-foreground/60 hover:text-primary transition-colors duration-200">
+                <Linkedin className="h-5 w-5" />
               </a>
-              <a href="https://github.com/zowowo" target="_blank" title="Check out my GitHub!">
-                <Github className="h-6 w-6 text-primary hover:scale-125 transition-transform duration-300" />
+              <a href="https://github.com/zowowo" target="_blank" rel="noopener noreferrer" title="Check out my GitHub!" className="min-w-[44px] min-h-[44px] flex items-center justify-center text-foreground/60 hover:text-primary transition-colors duration-200">
+                <Github className="h-5 w-5" />
               </a>
-              <a href="mailto:zoepineda47@gmail.com" target="_blank" title="Send me an email">
-                <Mail className="h-6 w-6 text-primary hover:scale-125 transition-transform duration-300" />
+              <a href="mailto:zoepineda47@gmail.com" target="_blank" rel="noopener noreferrer" title="Send me an email" className="min-w-[44px] min-h-[44px] flex items-center justify-center text-foreground/60 hover:text-primary transition-colors duration-200">
+                <Mail className="h-5 w-5" />
               </a>
             </div>
           </div>
 
           <div className="relative flex justify-center items-center">
-            <div className="absolute w-110 h-110 bg-primary/80 animate-[morph_10s_ease-in-out_infinite] z-0" />
             <img
               src={zoeImage}
               alt="Zoe Pineda"
-              className="relative z-10 w-130 h-140 object-cover rounded-full "
+              className="relative w-64 md:w-80 h-auto object-cover rounded-2xl"
             />
           </div>
 
@@ -56,10 +55,6 @@ export const HeroSection = () => {
         </div>
       </div>
 
-      {/* Scroll Arrow */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <ArrowDown className="h-10 w-5 text-primary" />
-      </div>
     </section>
   );
 };
