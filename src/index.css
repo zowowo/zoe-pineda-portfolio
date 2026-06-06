@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  /* Color tokens — resolved from CSS variables swapped by .dark */
+  /* Core palette tokens */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -12,7 +12,15 @@
   --color-muted-foreground: var(--muted-foreground);
   --color-secondary: var(--secondary);
 
-  /* Animations — kept from original, minus removed ones */
+  /* Forest editorial tokens */
+  --color-sage: var(--sage);
+  --color-accent-maroon: var(--accent-maroon);
+  --color-accent-amber: var(--accent-amber);
+  --color-surface-dark: var(--surface-dark);
+  --color-surface-pine: var(--surface-pine);
+  --color-surface-green-light: var(--surface-green-light);
+
+  /* Animations */
   --animate-fade-in: fade-in 0.7s ease-out forwards;
   --animate-fade-in-delay-1: fade-in 0.7s ease-out 0.2s forwards;
   --animate-fade-in-delay-2: fade-in 0.7s ease-out 0.4s forwards;
@@ -33,29 +41,44 @@
 
 @layer base {
   :root {
-    /* Light mode — warm cream base, maroon accent */
-    --background: oklch(0.97 0.006 30);
-    --foreground: oklch(0.18 0.025 25);
-    --card: oklch(0.99 0.003 30);
-    --primary: oklch(0.30 0.10 25);
-    --primary-foreground: oklch(0.96 0.008 30);
-    --border: oklch(0.90 0.012 30);
-    --muted: oklch(0.94 0.008 30);
-    --muted-foreground: oklch(0.48 0.02 25);
-    --secondary: oklch(0.95 0.015 30);
+    /* Light mode — forest editorial */
+    --background: oklch(0.97 0.005 155);
+    --foreground: oklch(0.18 0.02 155);
+    --card: oklch(0.99 0.003 155);
+    --primary: oklch(0.48 0.1 155);
+    --primary-foreground: oklch(0.97 0.005 155);
+    --border: oklch(0.90 0.01 155);
+    --muted: oklch(0.94 0.008 155);
+    --muted-foreground: oklch(0.48 0.02 155);
+    --secondary: oklch(0.22 0.03 155);
+
+    /* Forest editorial accents */
+    --sage: oklch(0.62 0.1 155);
+    --accent-maroon: oklch(0.28 0.09 22);
+    --accent-amber: oklch(0.72 0.15 85);
+    --surface-dark: oklch(0.12 0.02 155);
+    --surface-pine: oklch(0.22 0.03 155);
+    --surface-green-light: oklch(0.92 0.02 155);
   }
 
   .dark {
-    /* Dark mode — warm charcoal base, lighter maroon accent */
-    --background: oklch(0.14 0.012 25);
-    --foreground: oklch(0.90 0.01 30);
-    --card: oklch(0.19 0.012 25);
-    --primary: oklch(0.58 0.14 22);
-    --primary-foreground: oklch(0.95 0.008 30);
-    --border: oklch(0.26 0.015 25);
-    --muted: oklch(0.22 0.012 25);
-    --muted-foreground: oklch(0.62 0.015 25);
-    --secondary: oklch(0.20 0.015 25);
+    /* Dark mode — deep forest */
+    --background: oklch(0.12 0.02 155);
+    --foreground: oklch(0.90 0.008 155);
+    --card: oklch(0.18 0.02 155);
+    --primary: oklch(0.55 0.1 155);
+    --primary-foreground: oklch(0.97 0.005 155);
+    --border: oklch(0.24 0.02 155);
+    --muted: oklch(0.20 0.015 155);
+    --muted-foreground: oklch(0.60 0.015 155);
+    --secondary: oklch(0.16 0.02 155);
+
+    --sage: oklch(0.62 0.1 155);
+    --accent-maroon: oklch(0.38 0.09 22);
+    --accent-amber: oklch(0.72 0.15 85);
+    --surface-dark: oklch(0.10 0.015 155);
+    --surface-pine: oklch(0.18 0.025 155);
+    --surface-green-light: oklch(0.20 0.025 155);
   }
 
   * {
@@ -68,12 +91,22 @@
 
   body {
     @apply bg-background text-foreground transition-colors duration-300;
-    font-family: "Karla", system-ui, sans-serif;
+    font-family: "Manrope", system-ui, sans-serif;
     font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
   }
 
   h1, h2, h3 {
-    font-family: "Vollkorn", Georgia, serif;
+    font-family: "Young Serif", Georgia, serif;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
@@ -102,25 +135,25 @@
   @apply transition-shadow duration-200 hover:shadow-md;
 }
 
-/* Buttons — using plain CSS for pseudo-state support */
+/* Buttons */
 .button {
-  @apply px-6 py-2 rounded-md bg-primary text-primary-foreground font-medium;
-  transition: transform 0.1s, opacity 0.2s;
+  @apply px-6 py-2.5 rounded-lg bg-primary text-primary-foreground font-semibold text-sm;
+  transition: transform 0.1s, background-color 0.2s;
 }
 .button:hover {
-  opacity: 0.85;
+  background-color: oklch(0.52 0.1 155);
 }
 .button:active {
   transform: translateY(1px);
 }
 
 .reverse-button {
-  @apply px-6 py-2 rounded-md bg-transparent text-primary font-medium;
+  @apply px-6 py-2.5 rounded-lg bg-transparent text-primary font-semibold text-sm;
   border: 1.5px solid var(--primary);
   transition: background-color 0.2s, transform 0.1s;
 }
 .reverse-button:hover {
-  background-color: color-mix(in oklch, var(--primary) 10%, transparent);
+  background-color: color-mix(in oklch, var(--primary) 8%, transparent);
 }
 .reverse-button:active {
   transform: translateY(1px);
@@ -148,19 +181,6 @@
   color: var(--primary);
 }
 .nav-link:hover::after {
-  transform: scaleX(1);
-}
-.nav-link-active {
-  color: var(--primary);
-}
-.nav-link-active::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -4px;
-  height: 1px;
-  width: 100%;
-  background: var(--primary);
   transform: scaleX(1);
 }
 
