@@ -1,36 +1,22 @@
 import { Navbar } from "../components/Navbar";
-
-
 import { HeroSection } from "../components/HeroSection";
 import { AboutSection } from "../components/AboutSection";
-import { SkillsSection } from "../components/SkillsSection";
 import { ProjectsSection } from "../components/ProjectsSection";
-import { CertificationsSection } from "../components/CertificationsSection";
+import { TimelineSection } from "../components/TimelineSection";
 import { ContactSection } from "../components/ContactSection";
 import { Footer } from "../components/Footer";
-import { PracticumSection } from "../components/PracticumSection";
-import { TestimonialsSection } from "../components/TestimonialsSection";
 
 export const Home = () => {
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
-      
-
-      {/* Navbar */}
       <Navbar />
-      {/* Main Content */}
       <main>
         <HeroSection />
         <AboutSection />
-        <SkillsSection />
         <ProjectsSection />
-        <CertificationsSection/>
-        <PracticumSection />
-        <TestimonialsSection/>
+        <TimelineSection />
         <ContactSection />
       </main>
-
-      {/* Footer */}
       <Footer />
     </div>
   );
