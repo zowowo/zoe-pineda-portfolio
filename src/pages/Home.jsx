@@ -1,40 +1,28 @@
 import { Navbar } from "../components/Navbar";
-import { ThemeToggle } from "../components/ThemeToggle";
-import { GlassBackground } from "@/components/GlassBackground";
 import { HeroSection } from "../components/HeroSection";
 import { AboutSection } from "../components/AboutSection";
-import { SkillsSection } from "../components/SkillsSection";
 import { ProjectsSection } from "../components/ProjectsSection";
-import { CertificationsSection } from "../components/CertificationsSection";
+import { TimelineSection } from "../components/TimelineSection";
 import { ContactSection } from "../components/ContactSection";
 import { Footer } from "../components/Footer";
-import { PracticumSection } from "../components/PracticumSection";
-import { TestimonialsSection } from "../components/TestimonialsSection";
 
 export const Home = () => {
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
-      {/* Theme Toggle */}
-      <ThemeToggle />
-      {/* Background Effects */}
-      <GlassBackground />
-      
-
-      {/* Navbar */}
+      <a
+        href="#about"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-lg focus:text-sm focus:font-semibold"
+      >
+        Skip to content
+      </a>
       <Navbar />
-      {/* Main Content */}
       <main>
         <HeroSection />
         <AboutSection />
-        <SkillsSection />
         <ProjectsSection />
-        <CertificationsSection/>
-        <PracticumSection />
-        <TestimonialsSection/>
+        <TimelineSection />
         <ContactSection />
       </main>
-
-      {/* Footer */}
       <Footer />
     </div>
   );

@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forest Editorial v4 — With Life</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --deep-forest: oklch(12% 0.02 155);
+    --pine: oklch(22% 0.03 155);
+    --moss: oklch(48% 0.1 155);
+    --sage: oklch(62% 0.1 155);
+    --mist: oklch(97% 0.005 155);
+    --ink: oklch(18% 0.02 155);
+
+    --neutral-900: oklch(15% 0.008 155);
+    --neutral-700: oklch(35% 0.008 155);
+    --neutral-500: oklch(50% 0.006 155);
+    --neutral-400: oklch(60% 0.005 155);
+    --neutral-300: oklch(75% 0.005 155);
+    --neutral-200: oklch(88% 0.004 155);
+    --neutral-100: oklch(94% 0.003 155);
+
+    --maroon: oklch(28% 0.09 22);
+    --maroon-soft: oklch(92% 0.02 22);
+    --amber: oklch(72% 0.15 85);
+    --amber-dim: oklch(65% 0.12 85);
+    --amber-soft: oklch(95% 0.03 85);
+
+    /* Forest-tinted surfaces */
+    --surface-warm: oklch(96% 0.008 155);
+    --surface-green: oklch(38% 0.06 155);
+    --surface-green-light: oklch(92% 0.02 155);
+
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 32px;
+    --space-2xl: 48px;
+    --space-3xl: 64px;
+    --space-4xl: 96px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Manrope', sans-serif;
+    background: var(--neutral-900);
+    color: oklch(80% 0.005 155);
+    line-height: 1.6;
+    font-size: 1rem;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ======================== */
+  /* INTRO HEADER             */
+  /* ======================== */
+  .intro {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: var(--space-4xl) var(--space-xl) var(--space-2xl);
+  }
+  .intro .tag {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: var(--space-lg);
+  }
+  .intro h1 {
+    font-family: 'Young Serif', serif;
+    font-size: clamp(2rem, 4vw, 2.6rem);
+    font-weight: 400;
+    color: oklch(92% 0.005 155);
+    line-height: 1.15;
+    margin-bottom: var(--space-md);
+    max-width: 600px;
+  }
+  .intro p {
+    font-size: 0.88rem;
+    color: var(--neutral-400);
+    max-width: 540px;
+    line-height: 1.7;
+  }
+
+  /* ======================== */
+  /* SHARED                   */
+  /* ======================== */
+  .section {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 var(--space-xl) var(--space-3xl);
+  }
+  .label {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--moss);
+    margin-bottom: var(--space-lg);
+  }
+  .note {
+    font-size: 0.72rem;
+    color: var(--neutral-500);
+    margin-top: var(--space-sm);
+    margin-bottom: var(--space-3xl);
+    line-height: 1.6;
+    max-width: 580px;
+  }
+  .sep {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 var(--space-xl);
+  }
+  .sep hr {
+    border: none;
+    border-top: 1px solid oklch(22% 0.01 155);
+    margin-bottom: var(--space-3xl);
+  }
+
+  /* ======================== */
+  /* HERO                     */
+  /* ======================== */
+  .hero {
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .hero-nav {
+    background: oklch(96.5% 0.006 155);
+    padding: var(--space-md) var(--space-xl);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid oklch(90% 0.005 155);
+  }
+  .hero-nav .name {
+    font-family: 'Young Serif', serif;
+    font-size: 1rem;
+    color: var(--ink);
+  }
+  .hero-nav .links {
+    display: flex;
+    gap: var(--space-lg);
+  }
+  .hero-nav .links a {
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--neutral-400);
+    text-decoration: none;
+  }
+  .hero-nav .links a:first-child { color: var(--moss); }
+
+  .hero-body {
+    background: var(--deep-forest);
+    display: grid;
+    grid-template-columns: 1fr 0.85fr;
+    min-height: 420px;
+    position: relative;
+    overflow: hidden;
+  }
+  @media (max-width: 640px) {
+    .hero-body { grid-template-columns: 1fr; }
+  }
+
+  .hero-body::after {
+    content: '';
+    position: absolute;
+    bottom: -100px; left: 30%;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, oklch(48% 0.08 155 / 0.1) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-text {
+    padding: var(--space-3xl) var(--space-xl) var(--space-2xl);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+  }
+  .hero-text .greeting {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--neutral-400);
+    margin-bottom: var(--space-lg);
+  }
+  .hero-text h1 {
+    font-family: 'Young Serif', serif;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.0;
+    margin-bottom: var(--space-lg);
+  }
+  .hero-text h1 .l1 {
+    display: block;
+    font-size: clamp(2.2rem, 5vw, 3rem);
+    color: oklch(94% 0.005 155);
+  }
+  .hero-text h1 .l2 {
+    display: block;
+    font-size: clamp(2.8rem, 6.5vw, 4.2rem);
+    color: var(--sage);
+    font-style: italic;
+    margin-top: -2px;
+  }
+  .hero-text .bio {
+    font-size: 0.88rem;
+    color: oklch(68% 0.008 155);
+    max-width: 360px;
+    line-height: 1.65;
+    margin-bottom: var(--space-lg);
+  }
+  .hero-ctas {
+    display: flex;
+    gap: var(--space-sm);
+  }
+  .hero-ctas a {
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 10px 24px;
+    border-radius: 8px;
+    transition: all 0.2s;
+  }
+  .btn-fill {
+    background: var(--moss);
+    color: var(--mist);
+  }
+  .btn-fill:hover { background: oklch(52% 0.1 155); }
+  .btn-ghost {
+    color: oklch(68% 0.008 155);
+    padding: 10px 16px !important;
+  }
+  .btn-ghost:hover { color: var(--sage); }
+
+  /* Photo area */
+  .hero-photo {
+    background: var(--surface-green);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-photo .photo-placeholder {
+    width: 200px;
+    height: 260px;
+    border-radius: 12px 12px 0 0;
+    background: oklch(30% 0.04 155);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: oklch(55% 0.06 155);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .hero-photo::before {
+    content: '';
+    position: absolute;
+    top: 20px; right: 20px;
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: oklch(52% 0.1 155 / 0.2);
+  }
+  .hero-photo::after {
+    content: '';
+    position: absolute;
+    top: 50px; right: 50px;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: var(--amber);
+    opacity: 0.3;
+  }
+
+  /* ======================== */
+  /* ABOUT                    */
+  /* ======================== */
+  .about {
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--surface-warm);
+  }
+  .about-inner {
+    padding: var(--space-2xl) var(--space-xl);
+    display: grid;
+    grid-template-columns: 0.8fr 1fr;
+    gap: var(--space-2xl);
+    align-items: start;
+  }
+  @media (max-width: 600px) { .about-inner { grid-template-columns: 1fr; } }
+
+  .about-left .about-heading {
+    font-family: 'Young Serif', serif;
+    font-size: clamp(1.5rem, 3vw, 1.9rem);
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: var(--space-md);
+  }
+  .about-left .about-heading em {
+    font-style: italic;
+    color: var(--moss);
+  }
+  .about-left .about-location {
+    font-size: 0.78rem;
+    color: var(--neutral-500);
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+  .about-left .about-location::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--sage);
+    flex-shrink: 0;
+  }
+
+  .about-right p {
+    font-size: 0.9rem;
+    color: oklch(40% 0.01 155);
+    line-height: 1.75;
+    max-width: 45ch;
+  }
+  .about-right p + p { margin-top: var(--space-md); }
+  .about-right .hl { color: var(--ink); font-weight: 600; }
+
+  /* Quick facts strip */
+  .about-facts {
+    padding: var(--space-md) var(--space-xl);
+    background: var(--surface-green-light);
+    display: flex;
+    gap: var(--space-2xl);
+    flex-wrap: wrap;
+  }
+  .about-fact {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-sm);
+  }
+  .about-fact .fact-num {
+    font-family: 'Young Serif', serif;
+    font-size: 1.4rem;
+    color: var(--moss);
+  }
+  .about-fact .fact-text {
+    font-size: 0.75rem;
+    color: var(--neutral-500);
+    line-height: 1.3;
+  }
+
+  /* ======================== */
+  /* PROJECTS                 */
+  /* ======================== */
+  .projects {
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--mist);
+  }
+
+  .projects-head {
+    padding: var(--space-2xl) var(--space-xl) var(--space-md);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .projects-head h2 {
+    font-family: 'Young Serif', serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+  .projects-head .ct {
+    font-size: 0.72rem;
+    color: var(--neutral-400);
+  }
+
+  /* Featured project */
+  .pf {
+    padding: 0 var(--space-xl) var(--space-lg);
+  }
+  .pf-inner {
+    background: var(--deep-forest);
+    border-radius: 14px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (max-width: 640px) { .pf-inner { grid-template-columns: 1fr; } }
+
+  .pf-text {
+    padding: var(--space-xl) var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .pf-text .pf-type {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: var(--space-md);
+  }
+  .pf-text h3 {
+    font-family: 'Young Serif', serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 400;
+    color: oklch(93% 0.005 155);
+    letter-spacing: -0.02em;
+    margin-bottom: var(--space-sm);
+    line-height: 1.1;
+  }
+  .pf-text .pf-desc {
+    font-size: 0.85rem;
+    color: oklch(68% 0.008 155);
+    line-height: 1.65;
+    max-width: 40ch;
+    margin-bottom: var(--space-md);
+  }
+  .pf-text .pf-award {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--maroon);
+    letter-spacing: 0.3px;
+    background: var(--maroon-soft);
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 6px;
+    margin-bottom: var(--space-md);
+    width: fit-content;
+  }
+  .pf-text .pf-tech {
+    display: flex;
+    gap: var(--space-md);
+    font-size: 0.72rem;
+    color: oklch(55% 0.006 155);
+    flex-wrap: wrap;
+  }
+
+  .pf-visual {
+    background: var(--surface-green);
+    min-height: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .pf-visual .img-placeholder {
+    width: 85%;
+    height: 70%;
+    border-radius: 10px;
+    background: oklch(28% 0.04 155);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: oklch(50% 0.05 155);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    box-shadow: 0 8px 32px oklch(15% 0.02 155 / 0.3);
+  }
+
+  /* Secondary projects */
+  .project-list {
+    padding: var(--space-md) var(--space-xl) var(--space-xl);
+  }
+  .pi {
+    padding: var(--space-lg) 0;
+    border-top: 1px solid oklch(88% 0.005 155);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: var(--space-lg);
+    align-items: center;
+    transition: background 0.2s;
+  }
+  .pi:last-child {
+    border-bottom: 1px solid oklch(88% 0.005 155);
+  }
+  @media (max-width: 500px) {
+    .pi { grid-template-columns: auto 1fr; }
+    .pi .pi-right { grid-column: 1 / -1; }
+  }
+
+  .pi .pi-num {
+    font-family: 'Young Serif', serif;
+    font-size: 1.3rem;
+    color: var(--neutral-300);
+    width: 28px;
+  }
+  .pi .pi-middle {}
+  .pi .pi-title {
+    font-family: 'Young Serif', serif;
+    font-size: 1.15rem;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+  .pi .pi-sub {
+    font-size: 0.78rem;
+    color: var(--neutral-500);
+    line-height: 1.4;
+  }
+  .pi .pi-right { text-align: right; }
+  .pi .pi-award-text {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+  }
+  .pi .pi-award-text.amber { color: var(--amber-dim); }
+  .pi .pi-tech-text {
+    font-size: 0.7rem;
+    color: var(--neutral-400);
+    margin-top: 2px;
+  }
+
+  /* ======================== */
+  /* CAREER TIMELINE          */
+  /* ======================== */
+  .timeline {
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--deep-forest);
+    padding: var(--space-2xl) var(--space-xl);
+  }
+  .timeline h2 {
+    font-family: 'Young Serif', serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: oklch(92% 0.005 155);
+    margin-bottom: var(--space-xl);
+  }
+  .tl-item {
+    padding: var(--space-md) 0;
+    border-top: 1px solid oklch(22% 0.02 155);
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: var(--space-lg);
+    align-items: baseline;
+  }
+  @media (max-width: 500px) { .tl-item { grid-template-columns: 1fr; gap: var(--space-xs); } }
+  .tl-item .tl-year {
+    font-family: 'Young Serif', serif;
+    font-size: 1rem;
+    color: var(--sage);
+  }
+  .tl-item .tl-content {}
+  .tl-item .tl-role {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: oklch(88% 0.005 155);
+    margin-bottom: 2px;
+  }
+  .tl-item .tl-place {
+    font-size: 0.78rem;
+    color: var(--neutral-400);
+  }
+  .tl-item .tl-certs {
+    margin-top: var(--space-sm);
+    font-size: 0.72rem;
+    color: oklch(55% 0.006 155);
+    line-height: 1.6;
+  }
+
+  /* ======================== */
+  /* CONTACT                  */
+  /* ======================== */
+  .contact {
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .contact-body {
+    background: var(--surface-green-light);
+    padding: var(--space-2xl) var(--space-xl);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2xl);
+    align-items: start;
+  }
+  @media (max-width: 600px) { .contact-body { grid-template-columns: 1fr; } }
+
+  .contact-left h3 {
+    font-family: 'Young Serif', serif;
+    font-size: clamp(1.6rem, 3vw, 2rem);
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.15;
+    margin-bottom: var(--space-md);
+  }
+  .contact-left h3 em {
+    font-style: italic;
+    color: var(--moss);
+  }
+  .contact-left p {
+    font-size: 0.85rem;
+    color: var(--neutral-500);
+    line-height: 1.6;
+    max-width: 32ch;
+  }
+
+  .contact-right .cl {
+    padding: var(--space-md) 0;
+    border-top: 1px solid oklch(85% 0.008 155);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .contact-right .cl:last-child {
+    border-bottom: 1px solid oklch(85% 0.008 155);
+  }
+  .cl-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--neutral-400);
+  }
+  .cl-val {
+    font-size: 0.85rem;
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  /* Footer inside contact */
+  .contact-footer {
+    background: var(--deep-forest);
+    padding: var(--space-md) var(--space-xl);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .contact-footer span {
+    font-size: 0.7rem;
+    color: oklch(40% 0.008 155);
+  }
+
+  /* ======================== */
+  /* FULL COMPOSITION         */
+  /* ======================== */
+  .comp {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid oklch(25% 0.02 155);
+    box-shadow: 0 20px 60px oklch(8% 0.01 155 / 0.5);
+  }
+</style>
+</head>
+<body>
+
+<div class="intro">
+  <div class="tag">V4 — With Life</div>
+  <h1>More warmth, more personality, still editorial</h1>
+  <p>Same forest palette + Young Serif + Manrope. But now with photo areas, richer surfaces, a career timeline, and sections that actually feel inviting instead of austere.</p>
+</div>
+
+<!-- ======================== -->
+<!-- HERO                     -->
+<!-- ======================== -->
+<div class="section">
+  <span class="label">Hero</span>
+  <div class="hero">
+    <div class="hero-nav">
+      <span class="name">Zoe Pineda</span>
+      <div class="links">
+        <a href="#">About</a>
+        <a href="#">Projects</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+    <div class="hero-body">
+      <div class="hero-text">
+        <div class="greeting">Software Engineer &middot; Philippines</div>
+        <h1>
+          <span class="l1">Hi, I'm Zoe</span>
+          <span class="l2">Pineda</span>
+        </h1>
+        <p class="bio">Frontend engineer with a love for craft. Currently making healthcare more accessible at GoRocky.</p>
+        <div class="hero-ctas">
+          <a class="btn-fill" href="#">View my work</a>
+          <a class="btn-ghost" href="#">Get in touch &darr;</a>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <div class="photo-placeholder">Your photo</div>
+      </div>
+    </div>
+  </div>
+  <p class="note">Two-column hero with a photo area. The green surface behind the photo adds warmth and life. Decorative circles (the amber dot, the green orb) are subtle — not particles, just hints of playfulness. Your name still breaks dramatically across two lines.</p>
+</div>
+
+<div class="sep"><hr></div>
+
+<!-- ======================== -->
+<!-- ABOUT                    -->
+<!-- ======================== -->
+<div class="section">
+  <span class="label">About</span>
+  <div class="about">
+    <div class="about-inner">
+      <div class="about-left">
+        <h3 class="about-heading">Software engineer who builds with <em>intention</em></h3>
+        <div class="about-location">Sta. Rosa, Laguna, PH</div>
+      </div>
+      <div class="about-right">
+        <p><span class="hl">CS graduate</span> with experience spanning frontend development, data science, and mobile. I believe good interfaces should feel like someone actually cared about the person using them.</p>
+        <p>Currently building healthcare tools at <span class="hl">GoRocky</span>. Previously interned at <span class="hl">STMicroelectronics</span> where I shipped a Flask web app in an agile team.</p>
+      </div>
+    </div>
+    <div class="about-facts">
+      <div class="about-fact">
+        <span class="fact-num">4</span>
+        <span class="fact-text">Industry<br>certifications</span>
+      </div>
+      <div class="about-fact">
+        <span class="fact-num">324</span>
+        <span class="fact-text">Internship<br>hours</span>
+      </div>
+      <div class="about-fact">
+        <span class="fact-num">5</span>
+        <span class="fact-text">Shipped<br>projects</span>
+      </div>
+    </div>
+  </div>
+  <p class="note">The warm surface backgrounds make this feel inviting, not sterile. The facts strip at the bottom adds quick-scan credibility for recruiters. The italic "intention" in the heading gives the editorial accent a moment to breathe.</p>
+</div>
+
+<div class="sep"><hr></div>
+
+<!-- ======================== -->
+<!-- PROJECTS                 -->
+<!-- ======================== -->
+<div class="section">
+  <span class="label">Projects</span>
+  <div class="projects">
+    <div class="projects-head">
+      <h2>Selected Work</h2>
+    </div>
+
+    <!-- Featured: AgriKA -->
+    <div class="pf">
+      <div class="pf-inner">
+        <div class="pf-text">
+          <div class="pf-type">Thesis Project</div>
+          <h3>AgriKA</h3>
+          <p class="pf-desc">CNN-LSTM rice yield prediction using satellite imagery. From model training to full-stack Flask deployment.</p>
+          <div class="pf-award">Best Thesis &mdash; 400+ Graduates</div>
+          <div class="pf-tech">
+            <span>Python</span>
+            <span>TensorFlow</span>
+            <span>Flask</span>
+            <span>Satellite Imagery</span>
+          </div>
+        </div>
+        <div class="pf-visual">
+          <div class="img-placeholder">Project screenshot</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Other projects -->
+    <div class="project-list">
+      <div class="pi">
+        <span class="pi-num">02</span>
+        <div class="pi-middle">
+          <div class="pi-title">LORO</div>
+          <div class="pi-sub">AI speech therapy app for Filipino children with speech disorders</div>
+        </div>
+        <div class="pi-right">
+          <div class="pi-award-text amber">3rd Place &mdash; Microsoft Hackathon</div>
+          <div class="pi-tech-text">UX Design &middot; Pitch &middot; AI/ML</div>
+        </div>
+      </div>
+      <div class="pi">
+        <span class="pi-num">03</span>
+        <div class="pi-middle">
+          <div class="pi-title">Haste-urant</div>
+          <div class="pi-sub">Full-stack restaurant management system</div>
+        </div>
+        <div class="pi-right">
+          <div class="pi-tech-text">HTML/CSS &middot; JavaScript &middot; PHP &middot; MySQL</div>
+        </div>
+      </div>
+      <div class="pi">
+        <span class="pi-num">04</span>
+        <div class="pi-middle">
+          <div class="pi-title">This Portfolio</div>
+          <div class="pi-sub">The site you're on right now</div>
+        </div>
+        <div class="pi-right">
+          <div class="pi-tech-text">React &middot; Tailwind &middot; GSAP</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="note">AgriKA gets the hero treatment it earned — dark background, project screenshot area, full visual weight. The maroon award badge is the only non-green accent on the page. Secondary projects get editorial numbering (02, 03, 04) and compact list treatment. The amber award text on LORO earns its color.</p>
+</div>
+
+<div class="sep"><hr></div>
+
+<!-- ======================== -->
+<!-- CAREER TIMELINE          -->
+<!-- ======================== -->
+<div class="section">
+  <span class="label">Career Timeline</span>
+  <div class="timeline">
+    <h2>Experience &amp; Credentials</h2>
+    <div class="tl-item">
+      <div class="tl-year">2025 &ndash;</div>
+      <div class="tl-content">
+        <div class="tl-role">Frontend Engineer</div>
+        <div class="tl-place">GoRocky &middot; Healthcare</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2025</div>
+      <div class="tl-content">
+        <div class="tl-role">Software Engineering Intern</div>
+        <div class="tl-place">STMicroelectronics &middot; 324 hours</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2025</div>
+      <div class="tl-content">
+        <div class="tl-role">BS Computer Science</div>
+        <div class="tl-place">Graduate &middot; Best Thesis Awardee</div>
+        <div class="tl-certs">CompTIA ITF+ &middot; AWS Cloud Foundations &middot; Google Cloud Essentials &middot; DataCamp Data Analyst</div>
+      </div>
+    </div>
+  </div>
+  <p class="note">Internship and certs folded into a compact career timeline instead of their own sections. Dark background creates visual contrast and rhythm with the lighter sections above and below. The year column gives structure without needing icons or graphics.</p>
+</div>
+
+<div class="sep"><hr></div>
+
+<!-- ======================== -->
+<!-- CONTACT                  -->
+<!-- ======================== -->
+<div class="section">
+  <span class="label">Contact</span>
+  <div class="contact">
+    <div class="contact-body">
+      <div class="contact-left">
+        <h3>Let's work <em>together</em></h3>
+        <p>Open to opportunities and always happy to chat about craft, code, or dogs.</p>
+      </div>
+      <div class="contact-right">
+        <div class="cl">
+          <span class="cl-label">Email</span>
+          <span class="cl-val">zoe@example.com</span>
+        </div>
+        <div class="cl">
+          <span class="cl-label">LinkedIn</span>
+          <span class="cl-val">/in/zoe-pineda</span>
+        </div>
+        <div class="cl">
+          <span class="cl-label">GitHub</span>
+          <span class="cl-val">/zoepineda</span>
+        </div>
+        <div class="cl">
+          <span class="cl-label">Location</span>
+          <span class="cl-val">Sta. Rosa, Laguna</span>
+        </div>
+      </div>
+    </div>
+    <div class="contact-footer">
+      <span>Zoe Pineda &middot; 2026</span>
+      <span>Built with care</span>
+    </div>
+  </div>
+  <p class="note">Two-column layout: warm invitation on the left, clean contact info on the right. The green-tinted background makes it feel like a destination, not an afterthought. "Dogs" is the playful reveal for anyone who reads that far.</p>
+</div>
+
+</body>
+</html>

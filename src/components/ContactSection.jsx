@@ -1,187 +1,106 @@
-import {
-  Instagram,
-  Linkedin,
-  Mail,
-  MapPin,
-  Phone,
-  Send,
-  Twitch,
-  Twitter,
-} from "lucide-react";
-import { cn } from "@/lib/utils";
-import { useToast } from "@/hooks/use-toast";
-import { useState } from "react";
+import { motion } from "framer-motion";
+import { File, ArrowUpRight } from "lucide-react";
+
+const contactLinks = [
+  {
+    label: "Email",
+    value: "zoepineda47@gmail.com",
+    href: "mailto:zoepineda47@gmail.com",
+  },
+  {
+    label: "LinkedIn",
+    value: "/in/zoe-aleczandra-pineda",
+    href: "https://www.linkedin.com/in/zoe-aleczandra-pineda/",
+    external: true,
+  },
+  {
+    label: "GitHub",
+    value: "/zoepineda",
+    href: "https://github.com/zoepineda",
+    external: true,
+  },
+  {
+    label: "Location",
+    value: "Biñan, Laguna, PH",
+  },
+];
 
 export const ContactSection = () => {
-  const { toast } = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    setIsSubmitting(true);
-
-    setTimeout(() => {
-      toast({
-        title: "Message sent!",
-        description: "Thank you for your message. I'll get back to you soon.",
-      });
-      setIsSubmitting(false);
-    }, 1500);
-  };
   return (
-    <section id="contact" className="py-24 px-4 relative bg-secondary/30">
-      <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl shadow-lg p-10 max-w-xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
-          Coffee? <span className="text-primary"> Code?</span> Chat?
-        </h2>
+    <section id="contact" className="py-16 md:py-28 bg-surface-green-light relative overflow-hidden">
+      {/* Decorative number */}
+      <div
+        className="absolute top-12 right-[8%] text-[10rem] leading-none font-serif select-none pointer-events-none hidden lg:block text-foreground/[0.04]"
+        aria-hidden="true"
+      >
+        05
+      </div>
 
-        <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          Have a project in mind or want to collaborate? Feel free to reach out.
-          I'm always open to discussing new opportunities.
-        </p>
-
-      <div className="flex flex-col items-center justify-center">
-        <div className="space-y-8 text-center items-center flex flex-col">
-              <h3 className="text-2xl font-semibold mb-6">
-              {" "}
-              Let's build something together :)
-            </h3>
-
-            <div className="space-y-6 justify-center">
-              <div className="flex items-center justify-center space-x-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <Mail className="h-6 w-6 text-primary" />{" "}
-                </div>
-                <div>
-                  <h4 className="font-medium"> Email</h4>
-                  <a
-                    href="mailto:zoepineda47@gmail.com"
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    zoepineda47@gmail.com
-                  </a>
-                </div>
-              </div>
-              <div className="flex items-center justify-center space-x-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <Phone className="h-6 w-6 text-primary" />{" "}
-                </div>
-                <div>
-                  <h4 className="font-medium"> Phone</h4>
-                  <a
-                    href="tel:+639760321580"
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    +63 976 032 1580
-                  </a>
-                </div>
-              </div>
-              <div className="flex items-center justify-center space-x-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <MapPin className="h-6 w-6 text-primary" />{" "}
-                </div>
-                <div>
-                  <h4 className="font-medium"> Location</h4>
-                  <a className="text-muted-foreground hover:text-primary transition-colors">
-                    Sta. Rosa, Laguna, PH
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="pt-8">
-              <h4 className="font-medium mb-4"> I'd love to hear from you! </h4>
-              <div className="flex space-x-4 justify-center">
-                <a href="#" className="hover:text-primary hover:scale-110 transition-transform duration-200" target="_blank">
-                  <Linkedin />
-                </a>
-                <a href="#" className="hover:text-primary hover:scale-110 transition-transform duration-200" target="_blank">
-                  <Twitter />
-                </a>
-                <a href="#" className="hover:text-primary hover:scale-110 transition-transform duration-200" target="_blank">
-                  <Instagram />
-                </a>
-                {/* <a href="#" target="_blank">
-                  <Twitch />
-                </a> */}
-              </div>
-            </div>
+      <div className="container mx-auto max-w-5xl px-8 md:px-12 relative z-10">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1] }}
+        >
+          {/* Left — invitation */}
+          <div>
+            <p className="text-xs font-semibold tracking-widest uppercase text-primary mb-3">Contact</p>
+            <h2 className="text-3xl md:text-4xl tracking-tight mb-5">
+              Let&apos;s work{" "}
+              <em className="text-primary italic">together</em>
+            </h2>
+            <p className="text-[0.92rem] text-muted-foreground leading-relaxed max-w-[32ch] mb-8">
+              Open to opportunities and always happy to chat over some coffee:)
+            </p>
+            <a
+              href="https://drive.google.com/file/d/1m2AWkwp4Y8XLnd5xIgZuPwYSuprhP7Pd/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 button"
+            >
+              <File className="w-4 h-4" />
+              View my CV
+            </a>
           </div>
 
-          {/* <div
-            className="bg-card p-8 rounded-lg shadow-xs"
-            onSubmit={handleSubmit}
-          >
-            <h3 className="text-2xl font-semibold mb-6"> Send a Message</h3>
+          {/* Right — contact list */}
+          <div className="divide-y divide-border border-b border-border">
+            {contactLinks.map((link) => {
+              const content = (
+                <>
+                  <span className="text-xs font-semibold tracking-widest uppercase text-muted-foreground">
+                    {link.label}
+                  </span>
+                  <span className="text-sm font-medium text-foreground flex items-center gap-1.5">
+                    {link.value}
+                      <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-primary" />
+                  </span>
+                </>
+              );
 
-            <form className="space-y-6">
-              <div>
-                <label
-                  htmlFor="name"
-                  className="block text-sm font-medium mb-2"
-                >
-                  {" "}
-                  Your Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden foucs:ring-2 focus:ring-primary"
-                  placeholder="Pedro Machado..."
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium mb-2"
-                >
-                  {" "}
-                  Your Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden foucs:ring-2 focus:ring-primary"
-                  placeholder="john@gmail.com"
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="message"
-                  className="block text-sm font-medium mb-2"
-                >
-                  {" "}
-                  Your Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  required
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden foucs:ring-2 focus:ring-primary resize-none"
-                  placeholder="Hello, I'd like to talk about..."
-                />
-              </div>
-
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className={cn(
-                  "button w-full flex items-center justify-center gap-2"
-                )}
-              >
-                {isSubmitting ? "Sending..." : "Send Message"}
-                <Send size={16} />
-              </button>
-            </form>
-          </div> */}
-        </div>
+              if (link.href) {
+                return (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    target={link.external ? "_blank" : undefined}
+                    rel={link.external ? "noopener noreferrer" : undefined}
+                    className="group py-5 -mx-3 px-3 flex justify-between items-baseline hover:bg-primary/5 rounded-lg transition-colors duration-200"
+                  >
+                    {content}
+                  </a>
+                );
+              }
+              return (
+                <div key={link.label} className="py-5 flex justify-between items-baseline">
+                  {content}
+                </div>
+              );
+            })}
+          </div>
+        </motion.div>
       </div>
     </section>
   );

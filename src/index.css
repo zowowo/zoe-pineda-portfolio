@@ -1,42 +1,59 @@
 @import "tailwindcss";
 
 @theme {
-  --color-border: hsl(var(--border));
-  --color-background: hsl(var(--background));
-  --color-foreground: hsl(var(--foreground));
+  /* Core palette tokens */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-secondary: var(--secondary);
 
-  --color-primary: hsl(var(--primary));
-  --color-primary-foreground: hsl(var(--primary-foreground));
+  /* Forest editorial tokens */
+  --color-sage: var(--sage);
+  --color-accent-maroon: var(--accent-maroon);
+  --color-accent-amber: var(--accent-amber);
+  --color-surface-dark: var(--surface-dark);
+  --color-surface-pine: var(--surface-pine);
+  --color-surface-green-light: var(--surface-green-light);
 
-  --color-card: hsl(var(--card));
+  /* Hero / dark section */
+  --color-hero-bg: var(--hero-bg);
+  --color-hero-subtitle: var(--hero-subtitle);
+  --color-hero-body: var(--hero-body);
+  --color-hero-decorative: var(--hero-decorative);
 
-  --animate-float: float 6s ease-in-out infinite;
-  --animate-pulse-subtle: pulse-subtle 4s ease-in-out infinite;
+  /* Project featured */
+  --color-project-featured-bg: var(--project-featured-bg);
+  --color-project-featured-text: var(--project-featured-text);
+  --color-project-featured-body: var(--project-featured-body);
+  --color-project-featured-muted: var(--project-featured-muted);
+  --color-project-featured-image-bg: var(--project-featured-image-bg);
+  --color-project-tag-bg: var(--project-tag-bg);
+  --color-project-tag-text: var(--project-tag-text);
+
+  /* Timeline */
+  --color-timeline-border: var(--timeline-border);
+  --color-timeline-hover: var(--timeline-hover);
+  --color-timeline-role: var(--timeline-role);
+  --color-timeline-place: var(--timeline-place);
+  --color-timeline-body: var(--timeline-body);
+  --color-timeline-certs: var(--timeline-certs);
+
+  /* Footer */
+  --color-footer-bg: var(--footer-bg);
+  --color-footer-text: var(--footer-text);
+
+  /* Animations */
   --animate-fade-in: fade-in 0.7s ease-out forwards;
   --animate-fade-in-delay-1: fade-in 0.7s ease-out 0.2s forwards;
   --animate-fade-in-delay-2: fade-in 0.7s ease-out 0.4s forwards;
   --animate-fade-in-delay-3: fade-in 0.7s ease-out 0.6s forwards;
   --animate-fade-in-delay-4: fade-in 0.7s ease-out 0.8s forwards;
-  --animate-meteor: meteor 5s linear infinite;
 
-  @keyframes float {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-  }
-  @keyframes pulse-subtle {
-    0%,
-    100% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0.8;
-    }
-  }
   @keyframes fade-in {
     from {
       opacity: 0;
@@ -47,44 +64,98 @@
       transform: translateY(0);
     }
   }
-  @keyframes meteor {
-    0% {
-      transform: rotate(215deg) translateX(0);
-      opacity: 1;
-    }
-    70% {
-      opacity: 1;
-    }
-    100% {
-      transform: rotate(215deg) translateX(-500px);
-      opacity: 0;
-    }
-  }
 }
 
 @layer base {
   :root {
-    --background: 210 40% 98%;
-    --foreground: 222 47% 11%;
+    /* Light mode — forest editorial */
+    --background: oklch(0.97 0.005 155);
+    --foreground: oklch(0.18 0.02 155);
+    --card: oklch(0.99 0.003 155);
+    --primary: oklch(0.48 0.1 155);
+    --primary-foreground: oklch(0.97 0.005 155);
+    --border: oklch(0.90 0.01 155);
+    --muted: oklch(0.94 0.008 155);
+    --muted-foreground: oklch(0.48 0.02 155);
+    --secondary: oklch(0.22 0.03 155);
 
-    --card: 0 0% 100%;
+    /* Forest editorial accents */
+    --sage: oklch(0.62 0.1 155);
+    --accent-maroon: oklch(0.28 0.09 22);
+    --accent-amber: oklch(0.72 0.15 85);
+    --surface-dark: oklch(0.12 0.02 155);
+    --surface-pine: oklch(0.22 0.03 155);
+    --surface-green-light: oklch(0.92 0.02 155);
 
-    --primary: 205 70% 60%;
-    --primary-foreground: 210 40% 98%;
+    /* Hero / dark section tokens */
+    --hero-bg: oklch(0.11 0.02 155);
+    --hero-subtitle: oklch(0.55 0.04 155);
+    --hero-body: oklch(0.62 0.01 155);
+    --hero-decorative: oklch(0.16 0.015 155);
 
-    --border: 214 32% 91%;
+    /* Project featured card */
+    --project-featured-bg: oklch(0.13 0.025 155);
+    --project-featured-text: oklch(0.93 0.005 155);
+    --project-featured-body: oklch(0.72 0.01 155);
+    --project-featured-muted: oklch(0.45 0.01 155);
+    --project-featured-image-bg: oklch(0.18 0.03 155);
+    --project-tag-bg: oklch(0.20 0.02 155);
+    --project-tag-text: oklch(0.65 0.03 155);
+
+    /* Timeline section */
+    --timeline-border: oklch(0.20 0.02 155);
+    --timeline-hover: oklch(0.14 0.02 155);
+    --timeline-role: oklch(0.88 0.005 155);
+    --timeline-place: oklch(0.55 0.01 155);
+    --timeline-body: oklch(0.48 0.01 155);
+    --timeline-certs: oklch(0.42 0.01 155);
+
+    /* Footer */
+    --footer-bg: oklch(0.10 0.018 155);
+    --footer-text: oklch(0.38 0.01 155);
   }
 
   .dark {
-    --background: 222 47% 4%;
-    --foreground: 213 31% 91%;
+    /* Dark mode — deep forest */
+    --background: oklch(0.12 0.02 155);
+    --foreground: oklch(0.90 0.008 155);
+    --card: oklch(0.18 0.02 155);
+    --primary: oklch(0.55 0.1 155);
+    --primary-foreground: oklch(0.97 0.005 155);
+    --border: oklch(0.24 0.02 155);
+    --muted: oklch(0.20 0.015 155);
+    --muted-foreground: oklch(0.60 0.015 155);
+    --secondary: oklch(0.16 0.02 155);
 
-    --card: 222 47% 8%;
+    --sage: oklch(0.62 0.1 155);
+    --accent-maroon: oklch(0.38 0.09 22);
+    --accent-amber: oklch(0.72 0.15 85);
+    --surface-dark: oklch(0.10 0.015 155);
+    --surface-pine: oklch(0.18 0.025 155);
+    --surface-green-light: oklch(0.20 0.025 155);
 
-    --primary: 205 70% 60%;
-    --primary-foreground: 213 31% 91%;
+    --hero-bg: oklch(0.09 0.018 155);
+    --hero-subtitle: oklch(0.50 0.04 155);
+    --hero-body: oklch(0.58 0.01 155);
+    --hero-decorative: oklch(0.14 0.015 155);
 
-    --border: 217 33% 20%;
+    --project-featured-bg: oklch(0.11 0.02 155);
+    --project-featured-text: oklch(0.92 0.005 155);
+    --project-featured-body: oklch(0.68 0.01 155);
+    --project-featured-muted: oklch(0.42 0.01 155);
+    --project-featured-image-bg: oklch(0.15 0.025 155);
+    --project-tag-bg: oklch(0.18 0.02 155);
+    --project-tag-text: oklch(0.60 0.03 155);
+
+    --timeline-border: oklch(0.18 0.02 155);
+    --timeline-hover: oklch(0.12 0.02 155);
+    --timeline-role: oklch(0.85 0.005 155);
+    --timeline-place: oklch(0.52 0.01 155);
+    --timeline-body: oklch(0.45 0.01 155);
+    --timeline-certs: oklch(0.40 0.01 155);
+
+    --footer-bg: oklch(0.08 0.015 155);
+    --footer-text: oklch(0.40 0.01 155);
   }
 
   * {
@@ -97,7 +168,22 @@
 
   body {
     @apply bg-background text-foreground transition-colors duration-300;
+    font-family: "Manrope", system-ui, sans-serif;
     font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3 {
+    font-family: "Young Serif", Georgia, serif;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
@@ -122,62 +208,61 @@
   }
 }
 
-/* @utility text-glow {
-  @apply relative;
-  text-shadow: 0 0 10px rgba(82, 165, 224, 0.5);
-} */
-
 @utility card-hover {
-  @apply transition-transform duration-300 hover:scale-[1.02] hover:shadow-lg;
+  @apply transition-shadow duration-200 hover:shadow-md;
 }
 
-@utility gradient-border {
-  @apply relative rounded-md;
-  background: linear-gradient(to right, hsl(var(--card)), hsl(var(--card)));
-  background-clip: padding-box;
-  border: 1px solid transparent;
+/* Buttons */
+.button {
+  @apply px-6 py-2.5 rounded-lg bg-primary text-primary-foreground font-semibold text-sm;
+  transition: transform 0.1s, background-color 0.2s;
+}
+.button:hover {
+  background-color: oklch(0.52 0.1 155);
+}
+.button:active {
+  transform: translateY(1px);
 }
 
-@utility button {
-  @apply px-6 py-2 rounded-full bg-primary text-primary-foreground font-medium 
-         transition-all duration-300 hover:shadow-[0_0_10px_rgba(139,92,246,0.5)]
-         hover:scale-105 active:scale-95;
+.reverse-button {
+  @apply px-6 py-2.5 rounded-lg bg-transparent text-primary font-semibold text-sm;
+  border: 1.5px solid var(--primary);
+  transition: background-color 0.2s, transform 0.1s;
+}
+.reverse-button:hover {
+  background-color: color-mix(in oklch, var(--primary) 8%, transparent);
+}
+.reverse-button:active {
+  transform: translateY(1px);
 }
 
-@utility reverse-button {
-  /* our pre-defined colors in the beginning of the file */
-  @apply px-6 py-2 rounded-full bg-transparent text-primary font-medium
-          transition-all duration-300 hover:shadow-[0_0_10px_rgba(139,92,246,0.5)] 
-          hover:scale-105 active:scale-95;
-
-  border: 2px solid hsl(var(--primary));
+/* Nav link with sliding underline */
+.nav-link {
+  position: relative;
+  color: color-mix(in oklch, var(--foreground) 80%, transparent);
+  transition: color 0.2s;
 }
-
-@utility star {
-  @apply absolute rounded-full bg-white;
-  box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.4);
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 1px;
+  width: 100%;
+  background: var(--primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1);
 }
-
-@utility meteor {
-  @apply absolute bg-linear-to-r from-white via-white to-transparent rounded-full;
-  box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.3);
+.nav-link:hover {
+  color: var(--primary);
+}
+.nav-link:hover::after {
+  transform: scaleX(1);
 }
 
 #root {
   max-width: 100%;
   margin: 0 auto;
   padding: 0;
-  text-align: center;
-}
-
-@keyframes morph {
-  0% {
-    border-radius: 42% 58% 65% 35% / 56% 47% 53% 44%;
-  }
-  50% {
-    border-radius: 57% 43% 38% 62% / 36% 63% 37% 64%;
-  }
-  100% {
-    border-radius: 42% 58% 65% 35% / 56% 47% 53% 44%;
-  }
 }

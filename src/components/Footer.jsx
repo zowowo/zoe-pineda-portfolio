@@ -2,18 +2,40 @@ import { ArrowUp } from "lucide-react";
 
 export const Footer = () => {
   return (
-    <footer className="py-12 px-4 bg-card relative border-t border-border mt-12 pt-8 flex flex-wrap justify-between items-center">
+    <footer className="py-6 px-4 bg-footer-bg">
+      <div className="container mx-auto max-w-5xl px-8 md:px-12 flex items-center justify-between">
+        <p className="text-xs text-footer-text">
+          &copy; {new Date().getFullYear()} Zoe Pineda
+        </p>
 
-      <div className="container mx-auto text-center py-6">
-          <p className="text-sm text-muted-foreground">© {new Date().getFullYear()} Zoe Pineda. All rights reserved.</p>
-          <p className="text-sm text-muted-foreground">Built with love and React.</p>
+        <div className="flex items-center gap-6">
+          <div className="flex items-center gap-5 text-xs text-footer-text">
+            {[
+              { name: "LinkedIn", href: "https://www.linkedin.com/in/zoe-aleczandra-pineda/" },
+              { name: "GitHub", href: "https://github.com/zoepineda" },
+              { name: "Email", href: "mailto:zoepineda47@gmail.com" },
+            ].map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                target={link.href.startsWith("mailto") ? undefined : "_blank"}
+                rel={link.href.startsWith("mailto") ? undefined : "noopener noreferrer"}
+                className="hover:text-sage transition-colors duration-200 focus-visible:text-sage focus-visible:outline-none"
+              >
+                {link.name}
+              </a>
+            ))}
+          </div>
+
+          <a
+            href="#hero"
+            className="min-w-[44px] min-h-[44px] flex items-center justify-center hover:text-sage transition-colors duration-200 text-footer-text"
+            aria-label="Back to top"
+          >
+            <ArrowUp size={16} />
+          </a>
+        </div>
       </div>
-      <a
-        href="#hero"
-        className="p-2 rounded-full bg-primary/10 hover:bg-primary/20 text-primary transition-colors"
-      >
-        <ArrowUp size={20} />
-      </a>
     </footer>
   );
 };
