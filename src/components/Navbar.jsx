@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import { Menu, Moon, Sun, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navItems = [
@@ -54,10 +54,39 @@ export const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 10);
-    window.addEventListener("scroll", handleScroll);
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          setIsScrolled(window.scrollY > 10);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const menuRef = useRef(null);
+
+  // Focus trap for mobile menu
+  useEffect(() => {
+    if (!isMenuOpen || !menuRef.current) return;
+    const focusable = menuRef.current.querySelectorAll("a, button");
+    if (focusable.length) focusable[0].focus();
+
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") { setIsMenuOpen(false); return; }
+      if (e.key !== "Tab") return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isMenuOpen]);
 
   // Mobile menu link stagger
   const menuContainer = {
@@ -84,12 +113,16 @@ export const Navbar = () => {
           isScrolled ? "py-3 bg-background/80 backdrop-blur-md shadow-xs" : "py-5"
         )}
       >
-        <div className="container flex items-center justify-between">
+        <div className="container mx-auto max-w-5xl px-8 md:px-12 flex items-center justify-between">
         <a
-          className="text-xl font-bold text-primary flex items-center"
+          className={cn(
+            "text-xl flex items-center tracking-tight transition-all duration-300",
+            isScrolled ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2 pointer-events-none"
+          )}
           href="#hero"
+          style={{ fontFamily: "'Young Serif', Georgia, serif" }}
         >
-          Zoe Pineda
+          <span className="italic text-primary">Zoe</span>&nbsp;<span className="text-foreground/80">Pineda</span>
         </a>
 
         {/* Desktop nav */}
@@ -101,6 +134,7 @@ export const Navbar = () => {
                 key={item.href}
                 href={item.href}
                 className={cn("nav-link relative", isActive && "text-primary")}
+                aria-current={isActive ? "true" : undefined}
               >
                 {item.name}
                 {isActive && (
@@ -151,7 +185,7 @@ export const Navbar = () => {
         {/* Mobile hamburger */}
         <button
           onClick={() => setIsMenuOpen((prev) => !prev)}
-          className="md:hidden p-2 text-foreground z-50"
+          className="md:hidden min-w-[44px] min-h-[44px] flex items-center justify-center text-foreground z-50"
           aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}
         >
           <AnimatePresence mode="wait" initial={false}>
@@ -193,6 +227,7 @@ export const Navbar = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
+            ref={menuRef}
             className="fixed inset-0 bg-background/95 backdrop-blur-md z-40 flex flex-col items-center justify-center md:hidden"
           >
             <motion.div

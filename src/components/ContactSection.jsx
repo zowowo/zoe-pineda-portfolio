@@ -27,19 +27,18 @@ const contactLinks = [
 
 export const ContactSection = () => {
   return (
-    <section id="contact" className="py-28 px-4 bg-surface-green-light relative overflow-hidden">
+    <section id="contact" className="py-16 md:py-28 bg-surface-green-light relative overflow-hidden">
       {/* Decorative number */}
       <div
-        className="absolute top-12 right-[8%] text-[10rem] leading-none font-serif select-none pointer-events-none hidden lg:block"
-        style={{ color: "oklch(0.89 0.015 155)" }}
+        className="absolute top-12 right-[8%] text-[10rem] leading-none font-serif select-none pointer-events-none hidden lg:block text-foreground/[0.04]"
         aria-hidden="true"
       >
         05
       </div>
 
-      <div className="container mx-auto max-w-5xl relative z-10">
+      <div className="container mx-auto max-w-5xl px-8 md:px-12 relative z-10">
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16"
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
@@ -67,20 +66,18 @@ export const ContactSection = () => {
           </div>
 
           {/* Right — contact list */}
-          <div>
+          <div className="divide-y divide-border border-b border-border">
             {contactLinks.map((link) => {
-              const inner = (
-                <div className="py-4 border-t border-border flex justify-between items-baseline">
+              const content = (
+                <>
                   <span className="text-xs font-semibold tracking-widest uppercase text-muted-foreground">
                     {link.label}
                   </span>
                   <span className="text-sm font-medium text-foreground flex items-center gap-1.5">
                     {link.value}
-                    {link.href && (
                       <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-primary" />
-                    )}
                   </span>
-                </div>
+                </>
               );
 
               if (link.href) {
@@ -90,15 +87,18 @@ export const ContactSection = () => {
                     href={link.href}
                     target={link.external ? "_blank" : undefined}
                     rel={link.external ? "noopener noreferrer" : undefined}
-                    className="group block hover:bg-primary/5 transition-colors duration-200 -mx-3 px-3 rounded-lg"
+                    className="group py-5 -mx-3 px-3 flex justify-between items-baseline hover:bg-primary/5 rounded-lg transition-colors duration-200"
                   >
-                    {inner}
+                    {content}
                   </a>
                 );
               }
-              return <div key={link.label}>{inner}</div>;
+              return (
+                <div key={link.label} className="py-5 flex justify-between items-baseline">
+                  {content}
+                </div>
+              );
             })}
-            <div className="border-t border-border" />
           </div>
         </motion.div>
       </div>
