@@ -20,6 +20,33 @@
   --color-surface-pine: var(--surface-pine);
   --color-surface-green-light: var(--surface-green-light);
 
+  /* Hero / dark section */
+  --color-hero-bg: var(--hero-bg);
+  --color-hero-subtitle: var(--hero-subtitle);
+  --color-hero-body: var(--hero-body);
+  --color-hero-decorative: var(--hero-decorative);
+
+  /* Project featured */
+  --color-project-featured-bg: var(--project-featured-bg);
+  --color-project-featured-text: var(--project-featured-text);
+  --color-project-featured-body: var(--project-featured-body);
+  --color-project-featured-muted: var(--project-featured-muted);
+  --color-project-featured-image-bg: var(--project-featured-image-bg);
+  --color-project-tag-bg: var(--project-tag-bg);
+  --color-project-tag-text: var(--project-tag-text);
+
+  /* Timeline */
+  --color-timeline-border: var(--timeline-border);
+  --color-timeline-hover: var(--timeline-hover);
+  --color-timeline-role: var(--timeline-role);
+  --color-timeline-place: var(--timeline-place);
+  --color-timeline-body: var(--timeline-body);
+  --color-timeline-certs: var(--timeline-certs);
+
+  /* Footer */
+  --color-footer-bg: var(--footer-bg);
+  --color-footer-text: var(--footer-text);
+
   /* Animations */
   --animate-fade-in: fade-in 0.7s ease-out forwards;
   --animate-fade-in-delay-1: fade-in 0.7s ease-out 0.2s forwards;
@@ -59,6 +86,33 @@
     --surface-dark: oklch(0.12 0.02 155);
     --surface-pine: oklch(0.22 0.03 155);
     --surface-green-light: oklch(0.92 0.02 155);
+
+    /* Hero / dark section tokens */
+    --hero-bg: oklch(0.11 0.02 155);
+    --hero-subtitle: oklch(0.55 0.04 155);
+    --hero-body: oklch(0.62 0.01 155);
+    --hero-decorative: oklch(0.16 0.015 155);
+
+    /* Project featured card */
+    --project-featured-bg: oklch(0.13 0.025 155);
+    --project-featured-text: oklch(0.93 0.005 155);
+    --project-featured-body: oklch(0.72 0.01 155);
+    --project-featured-muted: oklch(0.45 0.01 155);
+    --project-featured-image-bg: oklch(0.18 0.03 155);
+    --project-tag-bg: oklch(0.20 0.02 155);
+    --project-tag-text: oklch(0.65 0.03 155);
+
+    /* Timeline section */
+    --timeline-border: oklch(0.20 0.02 155);
+    --timeline-hover: oklch(0.14 0.02 155);
+    --timeline-role: oklch(0.88 0.005 155);
+    --timeline-place: oklch(0.55 0.01 155);
+    --timeline-body: oklch(0.48 0.01 155);
+    --timeline-certs: oklch(0.42 0.01 155);
+
+    /* Footer */
+    --footer-bg: oklch(0.10 0.018 155);
+    --footer-text: oklch(0.38 0.01 155);
   }
 
   .dark {
@@ -79,6 +133,29 @@
     --surface-dark: oklch(0.10 0.015 155);
     --surface-pine: oklch(0.18 0.025 155);
     --surface-green-light: oklch(0.20 0.025 155);
+
+    --hero-bg: oklch(0.09 0.018 155);
+    --hero-subtitle: oklch(0.50 0.04 155);
+    --hero-body: oklch(0.58 0.01 155);
+    --hero-decorative: oklch(0.14 0.015 155);
+
+    --project-featured-bg: oklch(0.11 0.02 155);
+    --project-featured-text: oklch(0.92 0.005 155);
+    --project-featured-body: oklch(0.68 0.01 155);
+    --project-featured-muted: oklch(0.42 0.01 155);
+    --project-featured-image-bg: oklch(0.15 0.025 155);
+    --project-tag-bg: oklch(0.18 0.02 155);
+    --project-tag-text: oklch(0.60 0.03 155);
+
+    --timeline-border: oklch(0.18 0.02 155);
+    --timeline-hover: oklch(0.12 0.02 155);
+    --timeline-role: oklch(0.85 0.005 155);
+    --timeline-place: oklch(0.52 0.01 155);
+    --timeline-body: oklch(0.45 0.01 155);
+    --timeline-certs: oklch(0.40 0.01 155);
+
+    --footer-bg: oklch(0.08 0.015 155);
+    --footer-text: oklch(0.40 0.01 155);
   }
 
   * {
